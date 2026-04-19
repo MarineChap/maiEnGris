@@ -1,0 +1,64 @@
+.rmp-container {
+  background: var(--color-bg);
+}
+
+.rmp-svg-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px 24px;
+}
+
+.mountain-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.mountain-svg {
+  display: block;
+  height: auto;
+  min-width: 100%;
+}
+
+/* On desktop the SVG fills the container naturally */
+@media (min-width: 769px) {
+  .mountain-svg {
+    width: 100%;
+  }
+}
+
+/* On mobile, give the SVG a fixed wide pixel width so markers don't crowd */
+@media (max-width: 768px) {
+  .mountain-svg {
+    width: 1200px;
+  }
+}
+
+/* ─── Confetti ───────────────────────────────────────────────── */
+.confetti-root {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.confetti-star {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--confetti-color, var(--color-gold));
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%,
+    68% 57%, 79% 91%,
+    50% 70%, 21% 91%,
+    32% 57%, 2% 35%, 39% 35%
+  );
+  top: -7px;
+  left: -7px;
+}
