@@ -10,7 +10,8 @@ const MOUNTAIN_PATH_D =
   'C 830,115 845,90 880,70 C 910,55 960,45 1000,40'
 
 // Mountain silhouette fill (same path closed to the bottom)
-const MOUNTAIN_FILL_D = MOUNTAIN_PATH_D + ' L 1000,500 L 0,500 Z'
+const MOUNTAIN_FILL_D = MOUNTAIN_PATH_D + ' L 1000,460 L 0,460 Z'
+
 
 export default function MountainSVG({
   races,
@@ -61,7 +62,7 @@ export default function MountainSVG({
   return (
     <div className="mountain-container" ref={containerRef}>
       <svg
-        viewBox="-60 -40 1120 540"
+        viewBox="-5 -20 1035 490"
         xmlns="http://www.w3.org/2000/svg"
         className="mountain-svg"
         aria-label="Parcours de trail de Dominique Chaput"
@@ -92,7 +93,7 @@ export default function MountainSVG({
         </defs>
 
         {/* Sky */}
-        <rect x="-60" y="-40" width="1120" height="540" fill="url(#skyGrad)" />
+        <rect x="-5" y="-20" width="1035" height="490" fill="url(#skyGrad)" />
 
         {/* Mountain silhouette fill */}
         <path d={MOUNTAIN_FILL_D} fill="rgba(29, 43, 82, 0.07)" />
@@ -132,26 +133,22 @@ export default function MountainSVG({
         </motion.g>
 
         {/* Summit altitude haze overlay */}
-        <rect x="-60" y="-40" width="1120" height="540" fill="url(#summitHaze)" />
+        <rect x="-5" y="-20" width="1035" height="490" fill="url(#summitHaze)" />
 
         {/* Summit flag marker */}
         <g transform="translate(1000, 40)">
           <line x1="0" y1="0" x2="0" y2="-28" stroke="var(--color-navy)" strokeWidth={1.5} />
           <polygon points="0,-28 16,-22 0,-16" fill="var(--color-sky)" />
-          <text x="4" y="12" fontSize={9} fill="var(--color-navy)" fontWeight="700" fontFamily="var(--font-primary)">
-            SOMMET
-          </text>
         </g>
 
         {/* Milestone markers */}
-        {markerPositions.map((pos, index) => {
+        {markerPositions.map((pos) => {
           const race = races.find((r) => r.id === pos.id)
           if (!race) return null
           const state = getMilestoneState(race)
           return (
             <MilestoneMarker
               key={pos.id}
-              index={index}
               x={pos.x}
               y={pos.y}
               race={race}

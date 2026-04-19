@@ -48,6 +48,9 @@ export default function HeroSection({ onDonate, onAddKm }) {
           <div className="hero-assoc">
             <p className="hero-assoc__tag">6ème édition · Mai 2026</p>
             <h2 className="hero-assoc__title">Mai en Gris</h2>
+            <div className="hero-assoc__org-block">
+              <p className="hero-assoc__org">Des Étoiles Dans La Mer</p>
+            </div>
             <p className="hero-assoc__subtitle">Ensemble, luttons contre le glioblastome</p>
 
             <p className="hero-assoc__desc">
@@ -56,24 +59,10 @@ export default function HeroSection({ onDonate, onAddKm }) {
               pour sensibiliser et financer la recherche.
             </p>
 
-            <div className="hero-assoc__stats">
-              <div className="hero-assoc__stat">
-                <span className="hero-assoc__stat-value">XXXXX €</span>
-                <span className="hero-assoc__stat-label">versés à la recherche médicale</span>
-              </div>
-            </div>
-
             <div className="hero-assoc__pillars">
               <span>🔬 Financer la recherche</span>
               <span>🤝 Soutenir les familles</span>
               <span>📢 Sensibiliser le public</span>
-            </div>
-
-            <div className="hero-assoc__divider" />
-
-            <div className="hero-assoc__org-block">
-              <p className="hero-assoc__org">Des Étoiles Dans La Mer</p>
-              <p className="hero-assoc__org-sub">Vaincre Le Glioblastome · Montpellier</p>
             </div>
 
             <button className="assoc-btn assoc-btn--primary" onClick={handleDonate}>

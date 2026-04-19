@@ -57,6 +57,8 @@ export const FINAL_PEAK_KM = Math.max(...RACES.map(r => r.cumulativeKm))
 // Demo value: UTMB® milestone — community has collectively run 1614 km
 export const CURRENT_KM = 1614
 
+export const TOTAL_DONATIONS = "XXXXX €"
+
 export const ASSOCIATION_URL = "https://www.etoilesdanslamer.org"
 
 // URL du formulaire pour ajouter des km (Google Form, Strava, etc.) — à remplir

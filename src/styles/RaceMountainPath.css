@@ -5,9 +5,8 @@
 .rmp-svg-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 24px 24px;
+  padding: 40px 48px;
 }
 
 .mountain-container {
@@ -31,11 +30,22 @@
   }
 }
 
-/* On mobile, give the SVG a fixed wide pixel width so markers don't crowd */
+/* On mobile, minimum width = viewBox width (1120) so labels stay readable at ≥9 px */
 @media (max-width: 768px) {
   .mountain-svg {
-    width: 1200px;
+    width: 1035px; /* min pour lisibilité — viewBox 1035×570 */
   }
+}
+
+/* ─── Milestone hover labels ─────────────────────────────────── */
+.milestone-g .milestone-label {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.milestone-g:hover .milestone-label {
+  opacity: 1;
 }
 
 /* ─── Confetti ───────────────────────────────────────────────── */

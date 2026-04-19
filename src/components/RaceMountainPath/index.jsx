@@ -6,7 +6,7 @@ import MilestoneModal from './MilestoneModal'
 import ConfettiEffect from './ConfettiEffect'
 import '../../styles/RaceMountainPath.css'
 
-export default function RaceMountainPath({ races, currentKm, finalPeakKm, onDonate, onAddKm }) {
+export default function RaceMountainPath({ races, currentKm, finalPeakKm, totalDonations, onDonate, onAddKm }) {
   const [selectedRace, setSelectedRace] = useState(null)
   const [celebratingId, setCelebratingId] = useState(null)
   const prevKmRef = useRef(currentKm)
@@ -40,6 +40,7 @@ export default function RaceMountainPath({ races, currentKm, finalPeakKm, onDona
       <StatsHeader
         currentKm={currentKm}
         finalPeakKm={finalPeakKm}
+        totalDonations={totalDonations}
         nextRace={nextRace}
         onDonate={onDonate}
         onAddKm={onAddKm}
