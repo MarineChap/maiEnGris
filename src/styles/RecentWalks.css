@@ -1,0 +1,149 @@
+/* ─── Container ───────────────────────────────────────────── */
+.recent-walks {
+  position: absolute;
+  top: 40px;
+  left: 48px;
+  z-index: 30;
+  width: 260px;
+  font-family: inherit;
+}
+
+/* ─── Toggle button ───────────────────────────────────────── */
+.recent-walks__toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  background: rgba(29, 43, 82, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-white);
+  border: 1px solid rgba(160, 221, 243, 0.2);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s, border-color 0.15s;
+  text-align: left;
+}
+.recent-walks__toggle:hover {
+  background: rgba(29, 43, 82, 0.98);
+  border-color: rgba(160, 221, 243, 0.45);
+}
+
+.recent-walks__icon { font-size: 1em; flex-shrink: 0; }
+
+.recent-walks__label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.recent-walks__count {
+  background: var(--color-sky);
+  color: var(--color-navy);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 20px;
+}
+
+.recent-walks__chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  color: var(--color-sky);
+  opacity: 0.8;
+}
+.recent-walks__toggle.is-open .recent-walks__chevron {
+  transform: rotate(180deg);
+}
+
+/* ─── Dropdown list ───────────────────────────────────────── */
+.recent-walks__list {
+  margin: 5px 0 0;
+  padding: 6px 0;
+  background: rgba(22, 33, 68, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(160, 221, 243, 0.15);
+  border-radius: var(--radius-md);
+  list-style: none;
+  max-height: 280px;
+  overflow-y: auto;
+  transform-origin: top center;
+}
+
+/* Custom scrollbar */
+.recent-walks__list::-webkit-scrollbar { width: 4px; }
+.recent-walks__list::-webkit-scrollbar-track { background: transparent; }
+.recent-walks__list::-webkit-scrollbar-thumb {
+  background: rgba(160, 221, 243, 0.3);
+  border-radius: 2px;
+}
+
+/* ─── Individual walk item ────────────────────────────────── */
+.recent-walks__item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.88rem;
+  transition: background 0.1s;
+}
+.recent-walks__item:last-child { border-bottom: none; }
+.recent-walks__item:hover { background: rgba(255, 255, 255, 0.04); }
+
+.recent-walks__message {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 5px 8px;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 2px solid rgba(160, 221, 243, 0.3);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.recent-walks__name {
+  color: var(--color-white);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.recent-walks__km {
+  color: var(--color-sky);
+  font-weight: 700;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.recent-walks__time {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+/* ─── Mobile: bloc statique sous la montagne ──────────────── */
+@media (max-width: 768px) {
+  .recent-walks {
+    position: static;
+    width: 100%;
+    padding: 0 16px 16px;
+    box-sizing: border-box;
+  }
+  .recent-walks__toggle {
+    border-radius: var(--radius-md);
+  }
+}

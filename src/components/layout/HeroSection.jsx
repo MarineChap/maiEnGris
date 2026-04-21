@@ -65,9 +65,20 @@ export default function HeroSection({ onDonate, onAddKm }) {
               <span>📢 Sensibiliser le public</span>
             </div>
 
-            <button className="assoc-btn assoc-btn--primary" onClick={handleDonate}>
-              Faire un don →
-            </button>
+            <div className="hero-assoc__donate-row">
+              <div className="hero-assoc__tax">
+                <p className="hero-assoc__tax-label">Après déduction fiscale (66 %)</p>
+                <ul className="hero-assoc__tax-list">
+                  <li><span>150 €</span> vous revient à <strong>51 €</strong></li>
+                  <li><span>100 €</span> vous revient à <strong>34 €</strong></li>
+                  <li><span>50 €</span> vous revient à <strong>17 €</strong></li>
+                </ul>
+              </div>
+
+              <button className="assoc-btn assoc-btn--primary" onClick={handleDonate}>
+                Faire un don →
+              </button>
+            </div>
           </div>
         </div>
 

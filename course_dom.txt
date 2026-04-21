@@ -1,23 +1,23 @@
 Date,Course,Distance,Denivele
 2021-11-27,"La Sainté Lyon",78 km,2140 m+
-2021-10-01,"Ultra trail des montagnes du Jura - UTMJ",189 km,7980 m+
-2021-07-04,"Tour des Glaciers de la Vanoise - TGV",51 km,3500 m+
-2019-12-07,"TRANSMARTINIQUE",133 km,4950 m+
-2019-10-06,"TRAIL DU PETIT SAINT BERNARD",60 km,3350 m+
+2021-10-01,"Ultra trail des montagnes du Jura",189 km,7980 m+
+2021-07-04,"Tour des Glaciers de la Vanoise",51 km,3500 m+
+2019-12-07,"Transmartinique",133 km,4950 m+
+2019-10-06,"Trail du Petit Saint Bernard",60 km,3350 m+
 2019-07-20,"Ultra Tour du Beaufortain",105 km,6900 m+
 2019-06-01,"Trail du Gypaète - Les 3 Lacs",73 km,4830 m+
-2018-08-31,"Échappée Belle - L'Intégrale",138 km,10120 m+
-2018-06-09,"6666 OCCITANE - Grand Raid 6666",119 km,6670 m+
+2018-08-31,"Échappée Belle",138 km,10120 m+
+2018-06-09,"Grand Raid 6666",119 km,6670 m+
 2018-04-08,"Trail SO Bugey",44 km,2000 m+
 2017-09-01,"UTMB®",168 km,9980 m+
-2017-06-17,"UTPMA - Ultra Trail Puy Mary Aurillac",108 km,5230 m+
+2017-06-17,"Ultra Trail Puy Mary Aurillac",108 km,5230 m+
 2017-04-29,"Ardéchois Trail",55 km,2480 m+
 2016-09-02,"Ultra-Trail® Côte D'Azur Mercantour",148 km,10480 m+
-2016-07-01,"ULTRACHAMPSAUR",55 km,3990 m+
+2016-07-01,"UltraChampsaur",55 km,3990 m+
 2016-04-30,"Beaujolais Villages Trail",102 km,4380 m+
-2015-07-10,"Un Tour en Terre Du Jura - L'Intégrale",110 km,6000 m+
+2015-07-10,"Un Tour en Terre Du Jura",110 km,6000 m+
 2015-05-09,"Trail des Coursières",102 km,4139 m+
-2014-10-05,"TRAIL DES GLIERES",50 km,3350 m+
+2014-10-05,"Trail des Glieres",50 km,3350 m+
 2014-05-10,"Trail des Coursières",102 km,4000 m+
 2014-01-12,"Trail hivernal des Coursières",30 km,1160 m+
 2013-09-15,"Ecotrail Praz de Lys-Sommand",50 km,3735 m+
@@ -25,9 +25,9 @@ Date,Course,Distance,Denivele
 2013-04-26,"Trail Ardechois",34 km,1700 m+
 2012-05-05,"Trail Nivolet Revard",51 km,2700 m+
 2011-12-04,"La Sainté Lyon",70 km,1730 m+
-2011-07-31,"Trail Du Tour Des Fiz - 5 Refuges",30 km,2400 m+
+2011-07-31,"Trail Du Tour Des Fiz",30 km,2400 m+
 2011-05-14,"Trail des Coursières",102 km,4000 m+
-2010-06-30,"PILATRAIL",42 km,2100 m+
+2010-06-30,"Pilattrail",42 km,2100 m+
 2010-05-01,"Trail Ardechois",57 km,2450 m+
 2007-12-02,"La Sainté Lyon",70 km,1500 m+
 2007-07-01,"Marathon du Mont-Blanc",42 km,2250 m+

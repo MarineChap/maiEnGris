@@ -1,0 +1,197 @@
+/* ─── Overlay ─────────────────────────────────────────────── */
+.addkm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 16, 40, 0.72);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+
+/* ─── Modal card ──────────────────────────────────────────── */
+.addkm-modal {
+  position: relative;
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-elevated);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+}
+
+/* ─── Close button ────────────────────────────────────────── */
+.addkm-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--color-white);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+  z-index: 1;
+}
+.addkm-close:hover { background: rgba(255, 255, 255, 0.28); }
+
+/* ─── Header (navy) ───────────────────────────────────────── */
+.addkm-header {
+  background: var(--color-navy);
+  padding: 28px 28px 22px;
+  text-align: center;
+  color: var(--color-white);
+}
+.addkm-header__icon {
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.addkm-header__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.addkm-header__sub {
+  font-size: 0.83rem;
+  opacity: 0.72;
+  margin: 0;
+}
+
+/* ─── Form body ───────────────────────────────────────────── */
+.addkm-form {
+  padding: 24px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.addkm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.addkm-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-navy);
+}
+.addkm-required { color: #d94f4f; }
+.addkm-optional {
+  font-weight: 400;
+  font-size: 0.77rem;
+  color: #999;
+  margin-left: 3px;
+}
+
+.addkm-km-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.addkm-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #dde0e8;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-navy);
+  background: #f7f8fc;
+  transition: border-color 0.15s, background 0.15s;
+  outline: none;
+}
+.addkm-input:focus {
+  border-color: var(--color-sky);
+  background: var(--color-white);
+}
+
+.addkm-input--km {
+  width: 110px;
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.addkm-unit {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  opacity: 0.55;
+}
+
+.addkm-textarea {
+  resize: vertical;
+  min-height: 76px;
+  line-height: 1.5;
+}
+
+.addkm-char-count {
+  font-size: 0.72rem;
+  color: #aaa;
+  text-align: right;
+  margin-top: -2px;
+}
+
+.addkm-error {
+  color: #d94f4f;
+  font-size: 0.82rem;
+  margin: -6px 0 0;
+  padding: 8px 12px;
+  background: #fef0f0;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #d94f4f;
+}
+
+/* ─── Submit button ───────────────────────────────────────── */
+.addkm-btn {
+  background: var(--color-sky);
+  color: var(--color-navy);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 13px 20px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  width: 100%;
+}
+.addkm-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+.addkm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Success state ───────────────────────────────────────── */
+.addkm-success {
+  padding: 40px 28px 36px;
+  text-align: center;
+}
+.addkm-success__icon {
+  font-size: 52px;
+  margin-bottom: 16px;
+}
+.addkm-success__title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0 0 10px;
+}
+.addkm-success__text {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}

@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect, useEffect } from 'react'
+import { useRef, useState, useLayoutEffect, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import MilestoneMarker from './MilestoneMarker'
 
@@ -12,6 +12,13 @@ const MOUNTAIN_PATH_D =
 // Mountain silhouette fill (same path closed to the bottom)
 const MOUNTAIN_FILL_D = MOUNTAIN_PATH_D + ' L 1000,460 L 0,460 Z'
 
+// Frieze zone constants (SVG user units, below mountain fill at y=460)
+const DIVIDER_Y  = 466   // thin horizontal separator line
+const TICK_END_Y = 476   // bottom of tick marks
+const BRACKET_Y  = 476   // horizontal bracket connecting multi-race year ticks
+const LABEL_Y    = 492   // year text baseline
+
+const FONT = 'var(--font-primary)'
 
 export default function MountainSVG({
   races,
@@ -59,10 +66,42 @@ export default function MountainSVG({
     }
   }, [markerPositions])
 
+  // Group marker x positions by year for the frieze
+  const yearGroups = useMemo(() => {
+    if (markerPositions.length === 0) return []
+
+    const map = {}
+    markerPositions.forEach((pos) => {
+      const race = races.find((r) => r.id === pos.id)
+      if (!race) return
+      const year = race.date.slice(0, 4)
+      if (!map[year]) map[year] = { year, xs: [], completedCount: 0, total: 0 }
+      map[year].xs.push(pos.x)
+      map[year].total++
+      if (currentKm >= race.cumulativeKm) map[year].completedCount++
+    })
+
+    return Object.values(map)
+      .map((g) => {
+        const sorted = [...g.xs].sort((a, b) => a - b)
+        return {
+          year: g.year,
+          xs: sorted,
+          xMin: sorted[0],
+          xMax: sorted[sorted.length - 1],
+          xCenter: sorted.reduce((a, b) => a + b, 0) / sorted.length,
+          status:
+            g.completedCount === g.total ? 'completed' :
+            g.completedCount > 0        ? 'partial'   : 'locked',
+        }
+      })
+      .sort((a, b) => Number(a.year) - Number(b.year))
+  }, [markerPositions, races, currentKm])
+
   return (
     <div className="mountain-container" ref={containerRef}>
       <svg
-        viewBox="-5 -20 1035 490"
+        viewBox="-5 -20 1035 535"
         xmlns="http://www.w3.org/2000/svg"
         className="mountain-svg"
         aria-label="Parcours de trail de Dominique Chaput"
@@ -92,8 +131,8 @@ export default function MountainSVG({
           </pattern>
         </defs>
 
-        {/* Sky */}
-        <rect x="-5" y="-20" width="1035" height="490" fill="url(#skyGrad)" />
+        {/* Sky — extended to cover frieze zone */}
+        <rect x="-5" y="-20" width="1035" height="535" fill="url(#skyGrad)" />
 
         {/* Mountain silhouette fill */}
         <path d={MOUNTAIN_FILL_D} fill="rgba(29, 43, 82, 0.07)" />
@@ -133,7 +172,7 @@ export default function MountainSVG({
         </motion.g>
 
         {/* Summit altitude haze overlay */}
-        <rect x="-5" y="-20" width="1035" height="490" fill="url(#summitHaze)" />
+        <rect x="-5" y="-20" width="1035" height="535" fill="url(#summitHaze)" />
 
         {/* Summit flag marker */}
         <g transform="translate(1000, 40)">
@@ -141,7 +180,7 @@ export default function MountainSVG({
           <polygon points="0,-28 16,-22 0,-16" fill="var(--color-sky)" />
         </g>
 
-        {/* Milestone markers */}
+        {/* Milestone markers — dots first, then labels on top */}
         {markerPositions.map((pos) => {
           const race = races.find((r) => r.id === pos.id)
           if (!race) return null
@@ -156,7 +195,86 @@ export default function MountainSVG({
               currentKm={currentKm}
               onClick={() => onMilestoneClick(race)}
               isActiveRef={state === 'active' ? activeGroupRef : null}
+              mode="dot"
             />
+          )
+        })}
+        {markerPositions.map((pos) => {
+          const race = races.find((r) => r.id === pos.id)
+          if (!race) return null
+          const state = getMilestoneState(race)
+          return (
+            <MilestoneMarker
+              key={`label-${pos.id}`}
+              x={pos.x}
+              y={pos.y}
+              race={race}
+              state={state}
+              currentKm={currentKm}
+              onClick={() => onMilestoneClick(race)}
+              isActiveRef={null}
+              mode="label"
+            />
+          )
+        })}
+
+        {/* ─── Year Frieze ──────────────────────────────────────────── */}
+
+        {/* Thin separator line */}
+        <line
+          x1="-5" y1={DIVIDER_Y}
+          x2="1030" y2={DIVIDER_Y}
+          stroke="rgba(29, 43, 82, 0.1)"
+          strokeWidth="1"
+        />
+
+        {yearGroups.map((g) => {
+          const isLocked    = g.status === 'locked'
+          const isCompleted = g.status === 'completed'
+          const tickColor   = isLocked ? 'var(--color-locked)' : 'var(--color-sky)'
+          const textFill    = isLocked ? 'var(--color-locked-text)' : 'var(--color-navy)'
+          const textOpacity = g.status === 'partial' ? 0.65 : 1
+
+          return (
+            <g key={g.year}>
+              {/* Tick mark for each individual race of this year */}
+              {g.xs.map((x, i) => (
+                <line
+                  key={i}
+                  x1={x} y1={DIVIDER_Y}
+                  x2={x} y2={TICK_END_Y}
+                  stroke={tickColor}
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+              ))}
+
+              {/* Horizontal bracket connecting multi-race years */}
+              {g.xs.length > 1 && (
+                <line
+                  x1={g.xMin} y1={BRACKET_Y}
+                  x2={g.xMax} y2={BRACKET_Y}
+                  stroke={tickColor}
+                  strokeWidth="1"
+                  opacity="0.45"
+                />
+              )}
+
+              {/* Year label centered on the group */}
+              <text
+                x={g.xCenter}
+                y={LABEL_Y}
+                textAnchor="middle"
+                fontSize="8.5"
+                fontWeight={isCompleted ? '700' : '600'}
+                fontFamily={FONT}
+                fill={textFill}
+                opacity={textOpacity}
+                letterSpacing="0.04em"
+              >
+                {g.year}
+              </text>
+            </g>
           )
         })}
       </svg>
