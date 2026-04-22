@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Background circle -->
+  <circle cx="24" cy="24" r="23" fill="#4a4a4a"/>
+
+  <!-- Brain shape in grey/silver -->
+  <!-- Left hemisphere -->
+  <path d="
+    M14 28
+    C10 27 9 23 10 20
+    C11 17 13 16 14 17
+    C13 15 14 12 16 12
+    C18 12 19 14 19 15
+    C19 13 21 12 23 13
+    C24 13.5 24 15 24 16
+    L24 32
+    C22 33 20 33 18 32
+    C16 31 14 30 14 28Z
+  " fill="#c8c8c8"/>
+
+  <!-- Right hemisphere -->
+  <path d="
+    M34 28
+    C38 27 39 23 38 20
+    C37 17 35 16 34 17
+    C35 15 34 12 32 12
+    C30 12 29 14 29 15
+    C29 13 27 12 25 13
+    C24 13.5 24 15 24 16
+    L24 32
+    C26 33 28 33 30 32
+    C32 31 34 30 34 28Z
+  " fill="#d8d8d8"/>
+
+  <!-- Brain fold lines left -->
+  <path d="M17 18 C16 20 16 22 17 24" stroke="#888" stroke-width="1" fill="none" stroke-linecap="round"/>
+  <path d="M13 21 C13.5 23 14 25 14 27" stroke="#888" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  <path d="M19 20 C18.5 22 19 25 20 27" stroke="#aaa" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Brain fold lines right -->
+  <path d="M31 18 C32 20 32 22 31 24" stroke="#999" stroke-width="1" fill="none" stroke-linecap="round"/>
+  <path d="M35 21 C34.5 23 34 25 34 27" stroke="#999" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+  <path d="M29 20 C29.5 22 29 25 28 27" stroke="#bbb" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Center divide (corpus callosum hint) -->
+  <line x1="24" y1="16" x2="24" y2="32" stroke="#888" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Small grey ribbon at bottom -->
+  <path d="M20 36 C22 34 26 34 28 36 C26 37.5 24 38 24 38 C24 38 22 37.5 20 36Z" fill="#aaa"/>
+  <path d="M20 36 C19 38 20 40 22 39 C23 38.5 24 38 24 38" fill="#999"/>
+  <path d="M28 36 C29 38 28 40 26 39 C25 38.5 24 38 24 38" fill="#bbb"/>
+</svg>
