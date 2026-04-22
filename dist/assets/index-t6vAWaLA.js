@@ -21,16 +21,16 @@ Error generating stack: `+e.message+`
 2019-12-07,"Transmartinique",133 km,4950 m+,https://www.clubmanikou.com/, "", "/photos/transmartinique_1.jpg|/photos/transmartinique_2.jpg"
 2019-10-06,"Trail du Petit Saint Bernard",60 km,3350 m+,https://traildupetitsaintbernard.fr/, "", "/photos/saint_bernard.jpg"
 2019-07-20,"Ultra Tour du Beaufortain",105 km,6900 m+,https://www.ultratour-beaufortain.fr/
-2019-09-03, "GR20", 180 km, 12000 m+, https://www.gr20-corse.com/, 
+2019-09-03, "GR20", 180 km, 12000 m+, https://www.gr20-corse.com/, "", "/photos/gr20.jpg|/photos/gr20_2.jpg|/photos/gr20_1.jpg"
 2019-06-01,"Trail du Gypaète – Les 3 Lacs",73 km,4830 m+,https://www.traildugypaete.com/
-2018-08-31,"Échappée Belle",138 km,10120 m+,https://www.lechappeebelledonne.com/
+2018-08-31,"Échappée Belle",138 km,10120 m+,https://www.lechappeebelledonne.com/, "", "/photos/echapee_belle_1.jpg|/photos/echapee_belle.jpg"
 2018-06-09,"Grand Raid 6666",119 km,6670 m+,https://www.6666occitane.fr/
 2018-04-08,"Trail SO Bugey",44 km,2000 m+,https://www.trailsobugey.com/
-2017-09-01,"UTMB – Ultra-Trail du Mont-Blanc",168 km,9980 m+,https://montblanc.utmb.world/
-2017-06-17,"Ultra Trail Puy Mary Aurillac",108 km,5230 m+,https://www.utpma.fr/
+2017-09-01,"UTMB – Ultra-Trail du Mont-Blanc",168 km,9980 m+,https://montblanc.utmb.world/, "", "/photos/tmb.jpg"
+2017-06-17,"Ultra Trail Puy Mary Aurillac",108 km,5230 m+,https://www.utpma.fr/, "", "/photos/utpma.jpg"
 2017-04-29,"Trail Ardéchois",55 km,2480 m+,https://ardeche-trail-la-voie-romaine.com/
-2016-09-02,"Ultra-Trail Côte d'Azur Mercantour",148 km,10480 m+,https://utcam06.com/, "", "/photos/mercantour_1.jpg|/photos/mercantour_2.jpg"
-2016-07-01,"Ultra Champsaur",55 km,3990 m+,https://www.ultrachampsaur.com/
+2016-09-02,"Ultra-Trail Côte d'Azur Mercantour",148 km,10480 m+,https://utcam06.com/, "", "/photos/mercantour.jpg|/photos/mercantour_1.jpg|/photos/mercantour_2.jpg"
+2016-07-01,"Ultra Champsaur",55 km,3990 m+,https://www.ultrachampsaur.com/, "", "/photos/ultrachampsaur.jpg"
 2016-04-30,"Beaujolais Villages Trail",102 km,4380 m+,https://www.beaujolaisvillagestrail.com/
 2015-07-10,"Un Tour en Terre du Jura",110 km,6000 m+,https://jurapics.fr/
 2015-05-09,"Trail des Coursières",102 km,4139 m+,https://www.traildescoursieres.fr/
