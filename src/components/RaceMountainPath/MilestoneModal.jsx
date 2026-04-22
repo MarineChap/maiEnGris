@@ -99,9 +99,9 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
                 <span>·</span>
                 <span>❤ {race.suunto.avgHeartRate} bpm</span>
               </>}
-              {race.suunto?.gpxPath && (
+              {race.suunto?.elevationSamples && (
                 <GpxTrace
-                  gpxPath={race.suunto.gpxPath}
+                  samples={race.suunto.elevationSamples}
                   partial={race.suunto.tracePartial}
                 />
               )}
