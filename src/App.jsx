@@ -5,7 +5,7 @@ import HeroSection from './components/layout/HeroSection'
 import SiteFooter from './components/layout/SiteFooter'
 import RaceMountainPath from './components/RaceMountainPath'
 import AddKmModal from './components/layout/AddKmModal'
-import { RACES, CURRENT_KM, FINAL_PEAK_KM, ASSOCIATION_URL } from './data/races'
+import { RACES, CURRENT_KM, FINAL_PEAK_KM, DONATION_URL } from './data/races'
 import { getAlvarumAmount } from './services/contributions'
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
       <SiteHeader />
       <main>
         <HeroSection
-          onDonate={ASSOCIATION_URL}
+          onDonate={DONATION_URL}
           onAddKm={() => setShowAddKm(true)}
         />
         <RaceMountainPath
@@ -29,7 +29,7 @@ export default function App() {
           currentKm={CURRENT_KM}
           finalPeakKm={FINAL_PEAK_KM}
           totalDonations={totalDonations}
-          onDonate={ASSOCIATION_URL}
+          onDonate={DONATION_URL}
           onAddKm={() => setShowAddKm(true)}
         />
       </main>
