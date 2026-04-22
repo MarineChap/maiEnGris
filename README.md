@@ -1,16 +1,28 @@
-# React + Vite
+# Sur les Traces de Dom — Mai en Gris
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**[surlestracesdedom.fr](https://surlestracesdedom.fr)**
 
-Currently, two official plugins are available:
+A tribute website honoring **Dominique Chaput** (1960–2024), trail runner from Taluyers, who passed away from glioblastoma — an aggressive form of brain cancer.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What is this project?
 
-## React Compiler
+*Sur les Traces de Dom* ("On Dom's Trails") is a solidarity running challenge held throughout the month of May, which is Brain Cancer Awareness Month (symbolized by the grey ribbon). Participants run any distance, anywhere, in Dominique's memory — every kilometer contributes to raising funds for brain cancer research.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The website tracks participants' runs, displays a live collective progression on Dom's trails, and celebrates the collective effort of everyone running in his honor.
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React** + Vite
+- **Supabase** — database and real-time updates
+- **GPX traces** — participant run routes rendered on an interactive map
+
+## Running locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Live site
+
+[surlestracesdedom.fr](https://surlestracesdedom.fr)
