@@ -27,10 +27,10 @@ export default function HeroSection({ onDonate, onAddKm }) {
           </div>
 
           <div className="hero-dom">
-            <h1 className="hero__title">La Route de ses courses</h1>
-            <p className="hero__subtitle">Hommage à Dominique Chaput</p>
+            <h1 className="hero__title">Sur la trace de ses courses</h1>
+            <p className="hero__subtitle">En souvenir de Dominique Chaput</p>
             <p className="hero__intro">
-              Dominique était un coureur de trail passionné — 32 courses, des Alpes à la Martinique,
+              Dominique était un coureur de trail passionné, 32 courses, des Alpes à la Martinique,
               de la Sainté Lyon à l'UTMB. Chaque kilomètre que vous courez ce mai fait revivre une
               étape de son parcours et finance la recherche contre le glioblastome.
             </p>
