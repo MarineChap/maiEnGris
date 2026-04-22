@@ -74,29 +74,31 @@
 
 .hero-split__aside {
   background: var(--color-navy);
-  padding: 32px 30px 56px;
+  padding: 56px 30px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 0;
+  gap: 32px;
   z-index: 1;
 }
 
-
-.hero-pattern {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 0;
+/* ─── Dom block (navy panel) ──────────────────────────────────── */
+.hero-dom {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
 }
-
 
 .hero__title {
   font-size: 3.2rem;
   font-weight: 800;
-  color: var(--color-navy);
+  color: var(--color-white);
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
@@ -104,7 +106,7 @@
 .hero__subtitle {
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--color-sky-dark);
+  color: var(--color-sky);
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
@@ -112,14 +114,13 @@
 .hero__intro {
   font-size: 1.05rem;
   line-height: 1.75;
-  color: rgba(29, 43, 82, 0.85);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .hero__hint {
   font-size: 0.875rem;
   font-style: italic;
-  color: #6b7a9e;
-  opacity: 0.85;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .hero__portrait-frame {
@@ -141,39 +142,7 @@
   border-radius: calc(var(--radius-xl) - 4px);
 }
 
-/* Dom block inside the white panel */
-.hero-dom {
-  flex: 1;
-  min-width: 220px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  justify-content: flex-start;
-  text-align: center;
-  align-items: center;
-}
-
-.hero-dom__cta {
-  margin-top: auto;
-  padding: 13px 26px;
-  background: transparent;
-  border: 2px solid var(--color-navy);
-  color: var(--color-navy);
-  border-radius: var(--radius-md);
-  font-weight: 700;
-  font-size: 0.95rem;
-  cursor: pointer;
-  font-family: var(--font-primary);
-  align-self: center;
-  transition: background var(--transition-base), color var(--transition-base);
-}
-
-.hero-dom__cta:hover {
-  background: var(--color-navy);
-  color: var(--color-white);
-}
-
-/* Association block inside the navy panel */
+/* ─── Association block (white panel) ────────────────────────── */
 .hero-assoc {
   display: flex;
   flex-direction: column;
@@ -185,54 +154,22 @@
   justify-content: flex-start;
 }
 
-.hero-assoc .assoc-btn {
-  margin-top: auto;
-  align-self: center;
-}
-
 .hero-assoc__tag {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--color-white);
-  opacity: 0.7;
+  color: var(--color-navy);
+  opacity: 0.5;
 }
 
 .hero-assoc__title {
   font-size: 1.9rem;
   font-weight: 800;
-  color: var(--color-white);
+  color: var(--color-navy);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
-
-.hero-assoc__subtitle {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.hero-assoc__desc {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.hero-assoc__pillars {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  width: 100%;
-}
-
-.hero-assoc__pillars span {
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.75);
-}
-
 
 .hero-assoc__org-block {
   display: flex;
@@ -243,109 +180,32 @@
 .hero-assoc__org {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-white);
-}
-
-.hero-assoc__org-sub {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.04em;
-}
-
-/* ─── AssociationBand ─────────────────────────────────────────── */
-.assoc-band {
-  background: var(--color-navy);
-  padding: 36px 32px 40px;
-}
-
-.assoc-band__inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 48px;
-}
-
-.assoc-band__text {
-  flex: 1;
-}
-
-.assoc-band__org {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--color-sky);
-  margin-bottom: 10px;
-  letter-spacing: 0.01em;
-}
-
-.assoc-band__desc {
-  font-size: 1.2rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.82);
-  max-width: 580px;
-}
-
-.assoc-band__actions {
-  display: flex;
-  gap: 14px;
-  flex-shrink: 0;
-}
-
-.assoc-btn {
-  padding: 15px 30px;
-  border-radius: var(--radius-md);
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  font-family: var(--font-primary);
-  white-space: nowrap;
-  transition: filter var(--transition-base), transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
-}
-
-.assoc-btn:hover {
-  transform: translateY(-2px);
-}
-
-.assoc-btn--primary {
-  background: var(--color-white);
   color: var(--color-navy);
-  border: 2px solid var(--color-white);
 }
 
-.assoc-btn--primary:hover {
-  filter: brightness(0.92);
+.hero-assoc__subtitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-sky-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.assoc-btn--outline {
-  background: transparent;
-  color: var(--color-white);
-  border: 2px solid rgba(255, 255, 255, 0.55);
+.hero-assoc__desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(29, 43, 82, 0.85);
 }
 
-.assoc-btn--outline:hover {
-  border-color: var(--color-white);
-  background: rgba(255, 255, 255, 0.1);
+.hero-assoc__desc strong {
+  color: var(--color-navy);
 }
 
-/* ─── Tax deduction block (hero navy panel) ───────────────────── */
-.hero-assoc__donate-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-top: 16px;
-}
-
-.hero-assoc__donate-row .assoc-btn {
-  margin-top: 12px;
-}
-
+/* ─── Tax deduction block (white panel) ──────────────────────── */
 .hero-assoc__tax {
-  flex: 0 0 auto;
+  border-top: 1px solid rgba(29, 43, 82, 0.12);
+  padding-top: 16px;
+  width: 100%;
 }
 
 .hero-assoc__tax-label {
@@ -353,7 +213,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(29, 43, 82, 0.5);
   margin-bottom: 8px;
 }
 
@@ -366,7 +226,7 @@
 
 .hero-assoc__tax-list li {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(29, 43, 82, 0.75);
   line-height: 1.5;
 }
 
@@ -374,15 +234,13 @@
   display: inline-block;
   min-width: 38px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-navy);
 }
 
 .hero-assoc__tax-list strong {
-  color: var(--color-sky);
+  color: var(--color-sky-dark);
   font-weight: 700;
 }
-
-/* ─── DonationSection ─────────────────────────────────────────── */
 
 /* ─── SiteFooter ─────────────────────────────────────────────── */
 .site-footer {
@@ -430,20 +288,6 @@
   .hero__portrait {
     width: 180px;
     height: 240px;
-  }
-
-  .assoc-btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  .donation-section {
-    padding: 40px 16px;
-  }
-
-  .donation-section__inner {
-    grid-template-columns: 1fr;
-    gap: 32px;
   }
 
   .site-footer {

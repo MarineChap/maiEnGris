@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import '../../styles/StatsHeader.css'
 
-export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, nextRace }) {
+export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, onDonate, onAddKm }) {
   const sentinelRef = useRef(null)
   const [stuck, setStuck] = useState(false)
   const progress = Math.min(currentKm / finalPeakKm, 1)
@@ -17,6 +17,15 @@ export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, ne
     return () => observer.disconnect()
   }, [])
 
+  function handleDonate() {
+    if (typeof onDonate === 'string' && onDonate) window.open(onDonate, '_blank', 'noopener')
+  }
+
+  function handleAddKm() {
+    if (typeof onAddKm === 'string' && onAddKm) window.open(onAddKm, '_blank', 'noopener')
+    else onAddKm?.()
+  }
+
   return (
     <>
       <div className="stats-header-wave" aria-hidden="true">
@@ -27,11 +36,14 @@ export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, ne
       </div>
       <div ref={sentinelRef} style={{ position: 'absolute', top: 0 }} />
       <div className={`stats-header${stuck ? ' stats-header--stuck' : ''}`}>
+
         <div className="stats-block stats-block--left">
-          <span className="stats-km__label">Objectif</span>
-          <span className="stats-km__value">
-            {nextRace ? nextRace.name : 'Sommet atteint !'}
-          </span>
+          <button className="stats-action__btn stats-action__btn--donate" onClick={handleDonate}>
+            Faire un don →
+          </button>
+          <button className="stats-action__btn stats-action__btn--km" onClick={handleAddKm}>
+            Ajouter mes km →
+          </button>
         </div>
 
         <div className="stats-block stats-block--center">
@@ -48,6 +60,7 @@ export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, ne
             <div className="stats-km__bar-fill" style={{ width: `${progress * 100}%` }} />
           </div>
         </div>
+
       </div>
     </>
   )

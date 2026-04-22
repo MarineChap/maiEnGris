@@ -67,10 +67,7 @@ export default function App() {
     <>
       <SiteHeader />
       <main>
-        <HeroSection
-          onDonate={DONATION_URL}
-          onAddKm={() => setShowAddKm(true)}
-        />
+        <HeroSection />
         <RaceMountainPath
           races={RACES}
           currentKm={CURRENT_KM}

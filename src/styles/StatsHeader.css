@@ -20,7 +20,8 @@
 .stats-block {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 6px;
+  align-items: flex-start;
 }
 
 .stats-block--center {
@@ -72,6 +73,48 @@
 }
 
 
+.stats-action__btn {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter var(--transition-base), transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+}
+
+.stats-action__btn:hover {
+  transform: translateY(-1px);
+}
+
+.stats-action__btn--donate {
+  font-size: 0.82rem;
+  padding: 7px 16px;
+  width: 50%;
+  text-align: center;
+  background: var(--color-white);
+  color: var(--color-navy);
+  border: 2px solid var(--color-white);
+}
+
+.stats-action__btn--donate:hover {
+  filter: brightness(0.92);
+}
+
+.stats-action__btn--km {
+  font-size: 0.82rem;
+  padding: 7px 16px;
+  width: 50%;
+  text-align: center;
+  background: transparent;
+  color: var(--color-white);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.stats-action__btn--km:hover {
+  border-color: var(--color-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
 @media (max-width: 768px) {
   .stats-header {
     grid-template-columns: 1fr 1fr;
@@ -86,6 +129,11 @@
 
   .stats-km__bar {
     width: 80px;
+  }
+
+  .stats-action__btn {
+    font-size: 0.75rem;
+    padding: 6px 12px;
   }
 }
 
