@@ -28,12 +28,41 @@ export default function MountainSVG({
   onMilestoneClick,
 }) {
   const pathRef = useRef(null)        // plain <path> for measurement
+  const svgRef = useRef(null)         // SVG root for coordinate transforms
   const containerRef = useRef(null)   // scroll container for mobile auto-scroll
   const activeGroupRef = useRef(null) // the active marker DOM node
   const [markerPositions, setMarkerPositions] = useState([])
   const [runnerPos, setRunnerPos] = useState({ x: 0, y: 450 })
 
   const progress = Math.min(currentKm / finalPeakKm, 1)
+
+  // Find the nearest marker to the click point (SVG coordinates)
+  // This avoids z-order issues where overlapping hit circles intercept the wrong click
+  function handleSVGClick(e) {
+    e.stopPropagation()
+    const svg = svgRef.current
+    if (!svg || markerPositions.length === 0) return
+
+    const pt = svg.createSVGPoint()
+    pt.x = e.clientX
+    pt.y = e.clientY
+    const svgPt = pt.matrixTransform(svg.getScreenCTM().inverse())
+
+    let nearest = null
+    let minDist = Infinity
+    for (const pos of markerPositions) {
+      const d = Math.hypot(pos.x - svgPt.x, pos.y - svgPt.y)
+      if (d < 28 && d < minDist) {
+        minDist = d
+        nearest = pos
+      }
+    }
+
+    if (nearest) {
+      const race = races.find((r) => r.id === nearest.id)
+      if (race) onMilestoneClick(race)
+    }
+  }
 
   // Compute marker positions once the SVG path is in the DOM
   useLayoutEffect(() => {
@@ -101,10 +130,12 @@ export default function MountainSVG({
   return (
     <div className="mountain-container" ref={containerRef}>
       <svg
+        ref={svgRef}
         viewBox="-5 -20 1035 535"
         xmlns="http://www.w3.org/2000/svg"
         className="mountain-svg"
         aria-label="Parcours de trail de Dominique Chaput"
+        onClickCapture={handleSVGClick}
       >
         <defs>
           {/* Sky gradient background */}
@@ -180,7 +211,8 @@ export default function MountainSVG({
           <polygon points="0,-28 16,-22 0,-16" fill="var(--color-sky)" />
         </g>
 
-        {/* Milestone markers — dots first, then labels on top */}
+        {/* Milestone markers — two passes so labels always render above all dots.
+            Clicks are handled at SVG level (onClickCapture) so z-order doesn't affect them. */}
         {markerPositions.map((pos) => {
           const race = races.find((r) => r.id === pos.id)
           if (!race) return null
@@ -193,7 +225,7 @@ export default function MountainSVG({
               race={race}
               state={state}
               currentKm={currentKm}
-              onClick={() => onMilestoneClick(race)}
+              onClick={() => {}}
               isActiveRef={state === 'active' ? activeGroupRef : null}
               mode="dot"
             />
@@ -211,7 +243,7 @@ export default function MountainSVG({
               race={race}
               state={state}
               currentKm={currentKm}
-              onClick={() => onMilestoneClick(race)}
+              onClick={() => {}}
               isActiveRef={null}
               mode="label"
             />

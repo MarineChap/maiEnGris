@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import '../../styles/MilestoneModal.css'
@@ -23,7 +24,21 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-export default function MilestoneModal({ race, onClose }) {
+export default function MilestoneModal({ race, races, onNavigate, onClose }) {
+  const currentIndex = races.findIndex((r) => r.id === race.id)
+  const prevRace = currentIndex > 0 ? races[currentIndex - 1] : null
+  const nextRace = currentIndex < races.length - 1 ? races[currentIndex + 1] : null
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.key === 'ArrowLeft' && prevRace) onNavigate(prevRace)
+      if (e.key === 'ArrowRight' && nextRace) onNavigate(nextRace)
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [prevRace, nextRace, onNavigate, onClose])
+
   return createPortal(
     <motion.div
       className="modal-backdrop"
@@ -33,6 +48,16 @@ export default function MilestoneModal({ race, onClose }) {
       exit="exit"
       onClick={onClose}
     >
+      <div className="modal-nav-row" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="modal-nav-btn"
+          onClick={() => prevRace && onNavigate(prevRace)}
+          disabled={!prevRace}
+          aria-label="Course précédente"
+        >
+          ‹
+        </button>
+
       <motion.div
         className="modal-card"
         variants={cardVariants}
@@ -82,6 +107,16 @@ export default function MilestoneModal({ race, onClose }) {
           )}
         </div>
       </motion.div>
+
+        <button
+          className="modal-nav-btn"
+          onClick={() => nextRace && onNavigate(nextRace)}
+          disabled={!nextRace}
+          aria-label="Course suivante"
+        >
+          ›
+        </button>
+      </div>
     </motion.div>,
     document.body
   )

@@ -66,6 +66,8 @@ export default function RaceMountainPath({ races, currentKm: baseKm, dbKm, contr
           <MilestoneModal
             key={selectedRace.id}
             race={selectedRace}
+            races={races}
+            onNavigate={setSelectedRace}
             onClose={() => setSelectedRace(null)}
           />
         )}

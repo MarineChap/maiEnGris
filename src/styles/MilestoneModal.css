@@ -9,6 +9,34 @@
   padding: 16px;
 }
 
+.modal-nav-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.modal-nav-btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-elevated);
+  transition: background 0.15s, opacity 0.15s;
+}
+.modal-nav-btn:hover:not(:disabled) { background: var(--color-sky); color: var(--color-white); }
+.modal-nav-btn:disabled { opacity: 0.2; cursor: default; }
+
 .modal-card {
   background: var(--color-white);
   border-radius: var(--radius-xl);

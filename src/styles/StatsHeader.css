@@ -118,13 +118,41 @@
 @media (max-width: 768px) {
   .stats-header {
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     padding: 10px 16px;
     top: 56px;
-    gap: 10px;
+    gap: 8px 10px;
   }
 
+  /* Ligne 1 : donations (gauche) + km (droite) */
   .stats-block--center {
-    display: none;
+    display: flex;
+    grid-column: 1;
+    grid-row: 1;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .stats-block--right {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* Ligne 2 : boutons pleine largeur */
+  .stats-block--left {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .stats-km__label {
+    font-size: 0.65rem;
+  }
+
+  .stats-km__value {
+    font-size: 1rem;
   }
 
   .stats-km__bar {
@@ -133,7 +161,10 @@
 
   .stats-action__btn {
     font-size: 0.75rem;
-    padding: 6px 12px;
+    padding: 7px 8px;
+    width: auto;
+    flex: 1;
+    white-space: nowrap;
   }
 }
 
