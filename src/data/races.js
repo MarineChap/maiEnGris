@@ -1,4 +1,5 @@
-import csvRaw from "../../course_dom.txt?raw"
+import csvRaw     from "../../course_dom.txt?raw"
+import stravaData from "./strava_enriched.json"
 
 // Parse course_dom.txt — format: Date,Course,Distance,Denivele
 // e.g. 2021-11-27,"La Sainté Lyon",78 km,2140 m+
@@ -17,13 +18,17 @@ function parseCsv(raw) {
       }
       cols.push(current)
       if (cols.length < 4) return null
-      const [date, name, distRaw, denivRaw, urlRaw] = cols
+      const [date, name, distRaw, denivRaw, urlRaw, anecdoteRaw, photoRaw] = cols
       return {
         date: date.trim(),
         name: name.trim(),
         distance_km: parseInt(distRaw),
         denivele_m: parseInt(denivRaw),
         url: urlRaw ? urlRaw.trim() : null,
+        anecdote: anecdoteRaw ? anecdoteRaw.trim() : "",
+        photos: photoRaw
+          ? photoRaw.trim().split('|').map(p => p.trim()).filter(Boolean)
+          : [],
       }
     })
     .filter(r => r && r.date && !isNaN(r.distance_km))
@@ -44,8 +49,9 @@ export const RACES = rawRaces.map((r, i) => {
     denivele_m: r.denivele_m,
     cumulativeKm: cumul,
     url: r.url || null,
-    anecdote: "",        // fill in later — modal shows placeholder if empty
-    photoUrl: null,      // fill in later — e.g. "/photos/races/1.jpg"
+    anecdote: r.anecdote,
+    photos: r.photos,
+    suunto: stravaData[r.date] ?? null,
   }
 })
 
