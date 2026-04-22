@@ -70,6 +70,16 @@ export default function MilestoneModal({ race, onClose }) {
           <p className={`modal-anecdote${!race.anecdote ? ' modal-anecdote--placeholder' : ''}`}>
             {race.anecdote || "L'anecdote de cette course sera bientôt ajoutée."}
           </p>
+          {race.url && (
+            <a
+              href={race.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="modal-race-link"
+            >
+              Site officiel de la course →
+            </a>
+          )}
         </div>
       </motion.div>
     </motion.div>,

@@ -168,7 +168,7 @@ export default function MountainSVG({
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
         >
           <circle r={10} fill="var(--color-white)" filter="url(#markerGlow)" />
-          <text x="0" y="4" fontSize={14} textAnchor="middle">🏃‍♂️</text>
+          <text x="0" y="4" fontSize={14} textAnchor="middle" transform="scale(-1,1)">🏃‍♂️</text>
         </motion.g>
 
         {/* Summit altitude haze overlay */}

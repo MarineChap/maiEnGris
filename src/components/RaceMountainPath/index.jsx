@@ -5,54 +5,14 @@ import MountainSVG from './MountainSVG'
 import MilestoneModal from './MilestoneModal'
 import ConfettiEffect from './ConfettiEffect'
 import RecentWalks from './RecentWalks'
-import { supabase } from '../../lib/supabase'
-import { getTotalKm, getRecentContributions } from '../../services/contributions'
 import '../../styles/RaceMountainPath.css'
 
-export default function RaceMountainPath({ races, currentKm: baseKm, finalPeakKm, totalDonations, onDonate, onAddKm }) {
+export default function RaceMountainPath({ races, currentKm: baseKm, dbKm, contributions, finalPeakKm, totalDonations, onDonate, onAddKm }) {
   const [selectedRace, setSelectedRace] = useState(null)
   const [celebratingId, setCelebratingId] = useState(null)
-  const [dbKm, setDbKm] = useState(0)
-  const [contributions, setContributions] = useState([])
   const prevKmRef = useRef(baseKm)
 
   const currentKm = baseKm + dbKm
-
-  // Charge les données depuis Supabase au montage
-  useEffect(() => {
-    async function load() {
-      try {
-        const [total, recent] = await Promise.all([
-          getTotalKm(),
-          getRecentContributions(15),
-        ])
-        setDbKm(total)
-        setContributions(recent)
-      } catch (err) {
-        console.error('[mai-en-gris] Erreur chargement contributions:', err)
-      }
-    }
-    load()
-  }, [])
-
-  // Abonnement temps réel — met à jour le compteur quand une contribution est validée
-  useEffect(() => {
-    if (!supabase) return
-    const channel = supabase
-      .channel('contributions-live')
-      .on(
-        'postgres_changes',
-        { event: 'UPDATE', schema: 'public', table: 'contributions' },
-        (payload) => {
-          const wasValidated = payload.old.validated === false && payload.new.validated === true
-          if (!wasValidated) return
-          setDbKm((prev) => prev + Number(payload.new.km))
-          setContributions((prev) => [payload.new, ...prev].slice(0, 15))
-        }
-      )
-      .subscribe()
-    return () => supabase.removeChannel(channel)
-  }, [])
 
   // Détecte les franchissements d'étapes pour déclencher les confettis
   useEffect(() => {

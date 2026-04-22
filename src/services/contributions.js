@@ -1,25 +1,23 @@
 import { supabase } from '../lib/supabase'
 
-/** Retourne les N dernières contributions validées triées par date décroissante */
+/** Retourne les N dernières contributions triées par date décroissante */
 export async function getRecentContributions(limit = 15) {
   if (!supabase) return []
   const { data, error } = await supabase
     .from('contributions')
     .select('id, created_at, prenom, km, message')
-    .eq('validated', true)
     .order('created_at', { ascending: false })
     .limit(limit)
   if (error) throw error
   return data ?? []
 }
 
-/** Retourne la somme totale des km des contributions validées */
+/** Retourne la somme totale des km de toutes les contributions */
 export async function getTotalKm() {
   if (!supabase) return 0
   const { data, error } = await supabase
     .from('contributions')
     .select('km')
-    .eq('validated', true)
   if (error) throw error
   return (data ?? []).reduce((s, r) => s + Number(r.km), 0)
 }
@@ -36,7 +34,7 @@ export async function getAlvarumAmount() {
   return data?.value ?? null
 }
 
-/** Insère une nouvelle contribution (validated=false, en attente de validation manuelle) */
+/** Insère une nouvelle contribution */
 export async function addContribution({ prenom, km, message }) {
   if (!supabase) throw new Error('Supabase non configuré')
   const { error } = await supabase

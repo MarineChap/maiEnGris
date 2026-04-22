@@ -111,3 +111,15 @@
   color: #8a9ac0;
   font-style: italic;
 }
+
+.modal-race-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--color-sky-dark, #3a7fb5);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.15s;
+}
+.modal-race-link:hover { opacity: 0.72; }

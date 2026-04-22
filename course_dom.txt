@@ -1,33 +1,35 @@
-Date,Course,Distance,Denivele
-2021-11-27,"La Sainté Lyon",78 km,2140 m+
-2021-10-01,"Ultra trail des montagnes du Jura",189 km,7980 m+
-2021-07-04,"Tour des Glaciers de la Vanoise",51 km,3500 m+
-2019-12-07,"Transmartinique",133 km,4950 m+
-2019-10-06,"Trail du Petit Saint Bernard",60 km,3350 m+
-2019-07-20,"Ultra Tour du Beaufortain",105 km,6900 m+
-2019-06-01,"Trail du Gypaète - Les 3 Lacs",73 km,4830 m+
-2018-08-31,"Échappée Belle",138 km,10120 m+
-2018-06-09,"Grand Raid 6666",119 km,6670 m+
-2018-04-08,"Trail SO Bugey",44 km,2000 m+
-2017-09-01,"UTMB®",168 km,9980 m+
-2017-06-17,"Ultra Trail Puy Mary Aurillac",108 km,5230 m+
-2017-04-29,"Ardéchois Trail",55 km,2480 m+
-2016-09-02,"Ultra-Trail® Côte D'Azur Mercantour",148 km,10480 m+
-2016-07-01,"UltraChampsaur",55 km,3990 m+
-2016-04-30,"Beaujolais Villages Trail",102 km,4380 m+
-2015-07-10,"Un Tour en Terre Du Jura",110 km,6000 m+
-2015-05-09,"Trail des Coursières",102 km,4139 m+
-2014-10-05,"Trail des Glieres",50 km,3350 m+
-2014-05-10,"Trail des Coursières",102 km,4000 m+
-2014-01-12,"Trail hivernal des Coursières",30 km,1160 m+
-2013-09-15,"Ecotrail Praz de Lys-Sommand",50 km,3735 m+
-2013-06-15,"Aravistrail",36 km,2800 m+
-2013-04-26,"Trail Ardechois",34 km,1700 m+
-2012-05-05,"Trail Nivolet Revard",51 km,2700 m+
-2011-12-04,"La Sainté Lyon",70 km,1730 m+
-2011-07-31,"Trail Du Tour Des Fiz",30 km,2400 m+
-2011-05-14,"Trail des Coursières",102 km,4000 m+
-2010-06-30,"Pilattrail",42 km,2100 m+
-2010-05-01,"Trail Ardechois",57 km,2450 m+
-2007-12-02,"La Sainté Lyon",70 km,1500 m+
-2007-07-01,"Marathon du Mont-Blanc",42 km,2250 m+
+Date,Course,Distance,Denivele,URL
+2021-11-27,"La Sainté Lyon",78 km,2140 m+,https://www.saintelyon.com/
+2021-10-01,"Ultra Trail des Montagnes du Jura",189 km,7980 m+,https://ultra-trail-montagnes-jura.fr/
+2021-07-04,"Tour des Glaciers de la Vanoise",51 km,3500 m+,https://trailsvanoise.fr/
+2019-12-07,"Transmartinique",133 km,4950 m+,https://www.clubmanikou.com/
+2019-10-06,"Trail du Petit Saint Bernard",60 km,3350 m+,https://traildupetitsaintbernard.fr/
+2019-07-20,"Ultra Tour du Beaufortain",105 km,6900 m+,https://www.ultratour-beaufortain.fr/
+2019-06-01,"Trail du Gypaète – Les 3 Lacs",73 km,4830 m+,https://www.traildugypaete.com/
+2018-08-31,"Échappée Belle",138 km,10120 m+,https://www.lechappeebelledonne.com/
+2018-06-09,"Grand Raid 6666",119 km,6670 m+,https://www.6666occitane.fr/
+2018-04-08,"Trail SO Bugey",44 km,2000 m+,https://www.trailsobugey.com/
+2017-09-01,"UTMB – Ultra-Trail du Mont-Blanc",168 km,9980 m+,https://montblanc.utmb.world/
+2017-06-17,"Ultra Trail Puy Mary Aurillac",108 km,5230 m+,https://www.utpma.fr/
+2017-04-29,"Trail Ardéchois",55 km,2480 m+,https://ardeche-trail-la-voie-romaine.com/
+2016-09-02,"Ultra-Trail Côte d'Azur Mercantour",148 km,10480 m+,https://utcam06.com/
+2016-07-01,"Ultra Champsaur",55 km,3990 m+,https://www.ultrachampsaur.com/
+2016-04-30,"Beaujolais Villages Trail",102 km,4380 m+,https://www.beaujolaisvillagestrail.com/
+2015-07-10,"Un Tour en Terre du Jura",110 km,6000 m+,https://jurapics.fr/
+2015-05-09,"Trail des Coursières",102 km,4139 m+,https://www.traildescoursieres.fr/
+2014-10-05,"Trail des Glières",50 km,3350 m+,https://www.traildesglieres.fr/
+2014-05-10,"Trail des Coursières",102 km,4000 m+,https://www.traildescoursieres.fr/
+2014-01-12,"Trail hivernal des Coursières",30 km,1160 m+,https://www.traildescoursieres.fr/
+2013-09-15,"Écotrail Praz de Lys-Sommand",50 km,3735 m+,
+2013-06-15,"Aravis Trail",36 km,2800 m+,https://www.aravistrail.fr/
+2013-04-26,"Trail Ardéchois",34 km,1700 m+,https://ardeche-trail-la-voie-romaine.com/
+2012-05-05,"Trail Nivolet Revard",51 km,2700 m+,https://www.nivoletrevard.fr/
+2011-12-04,"La Sainté Lyon",70 km,1730 m+,https://www.saintelyon.com/
+2011-07-31,"Trail du Tour des Fiz",30 km,2400 m+,https://www.traildutourdesfiz.com/
+2011-05-14,"Trail des Coursières",102 km,4000 m+,https://www.traildescoursieres.fr/
+2010-06-30,"Pilatrail",42 km,2100 m+,https://pilatrail.fr/
+2010-05-01,"Trail Ardéchois",57 km,2450 m+,https://ardeche-trail-la-voie-romaine.com/
+2007-12-02,"La Sainté Lyon",70 km,1500 m+,https://www.saintelyon.com/
+2007-07-01,"Marathon du Mont-Blanc",42 km,2250 m+,https://www.marathonmontblanc.fr/
+2005-04-10,"Marathon de Paris",42 km,1000 m+,https://www.schneiderelectricparismarathon.com/
+2003-10-03,"Marathon de Lyon",42 km,1000 m+,https://www.marathondulyon.com/
