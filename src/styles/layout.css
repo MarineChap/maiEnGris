@@ -288,6 +288,26 @@
     padding: 0 16px;
   }
 
+  /* Ligne 1 : nom (gauche) + lien association (droite) — même style fort */
+  /* Ligne 2 : tagline (gauche) + blurb (droite) — même style discret  */
+  .site-header__right {
+    flex-direction: column-reverse;
+  }
+
+  /* Lien : aligner sur .site-header__name (italique, gras, sky, même taille) */
+  .site-header__link {
+    font-style: italic;
+    font-size: 1rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* Blurb : aligner sur .site-header__tagline (discret, uppercase) */
+  .site-header__blurb {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
   .hero-split {
     grid-template-columns: 1fr;
   }
