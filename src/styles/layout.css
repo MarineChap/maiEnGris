@@ -284,26 +284,52 @@
 
 /* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 768px) {
+
+  /*
+   * Header : grille 2×2 avec display:contents sur les wrappers
+   * pour placer visuellement les 4 éléments sans changer l’ordre du DOM.
+   *
+   * Ligne 1 : nom  |  lien    — même style (sky, gras, italique)
+   * Ligne 2 : tagline | blurb — même style (discret, uppercase)
+   */
   .site-header {
-    padding: 0 16px;
+    padding: 8px 16px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "brand-name  assoc-link"
+      "tagline     blurb";
+    row-gap: 2px;
   }
 
-  /* Ligne 1 : nom (gauche) + lien association (droite) — même style fort */
-  /* Ligne 2 : tagline (gauche) + blurb (droite) — même style discret  */
-  .site-header__right {
-    flex-direction: column-reverse;
+  .site-header__brand { display: contents; }
+  .site-header__right { display: contents; }
+
+  /* Ligne 1 — style fort : sky, italique, gras */
+  .site-header__name {
+    grid-area: brand-name;
   }
 
-  /* Lien : aligner sur .site-header__name (italique, gras, sky, même taille) */
   .site-header__link {
+    grid-area: assoc-link;
+    justify-self: end;
     font-style: italic;
     font-size: 1rem;
     font-weight: 700;
     white-space: nowrap;
   }
 
-  /* Blurb : aligner sur .site-header__tagline (discret, uppercase) */
+  /* Ligne 2 — style discret : blanc atténué, uppercase, petite taille */
+  .site-header__tagline {
+    grid-area: tagline;
+  }
+
   .site-header__blurb {
+    grid-area: blurb;
+    justify-self: end;
+    text-align: right;
     font-size: 0.7rem;
     color: rgba(255, 255, 255, 0.65);
   }
