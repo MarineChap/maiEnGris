@@ -49,9 +49,9 @@ export default function HeroSection() {
             <h1 className="hero__title">Sur la trace de ses courses</h1>
             <p className="hero__subtitle">En souvenir de Dominique Chaput</p>
             <p className="hero__intro">
-              Dominique aimait se dépasser — 34 courses, des Alpes à la Martinique,
-              de la Sainté Lyon à l'UTMB. Le défi : cumuler collectivement autant de kilomètres
-              que les plus grandes courses de sa vie. Que vous marchiez 2 km ou couriez un marathon,
+              Dominique aimait se dépasser — 37 courses, des Alpes à la Martinique,
+              de la Sainté Lyon à l'UTMB. Le défi : cumuler collectivement autant de kilomètres
+              que les plus grandes courses de sa vie. Que vous marchiez 2 km ou couriez un marathon,
               chaque pas s'ajoute au compteur commun.
             </p>
             <p className="hero__hint">
