@@ -6,7 +6,9 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="site-header__brand">
         <span className="site-header__name">Mai en Gris</span>
-        <span className="site-header__tagline">En souvenir de Dominique Chaput</span>
+        <span className="site-header__tagline">
+          En souvenir de<br className="site-header__tagline-br" /> Dominique Chaput
+        </span>
       </div>
       <div className="site-header__right">
         <span className="site-header__blurb">Défi sportif au profit de</span>

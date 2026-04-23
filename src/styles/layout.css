@@ -33,6 +33,10 @@
   letter-spacing: 0.06em;
 }
 
+.site-header__tagline-br {
+  display: none;
+}
+
 .site-header__right {
   display: flex;
   flex-direction: column;
@@ -289,13 +293,10 @@
     min-height: 56px;
   }
 
-  /*
-   * Ligne 1 : "Mai en Gris" | "Défi sportif au profit de"
-   *   → même style label : petit, atténué, uppercase
-   *
-   * Ligne 2 : "En souvenir de Dominique Chaput" | "Des Étoiles Dans La Mer →"
-   *   → même style valeur : sky, gras, italique
-   */
+  .site-header__tagline-br {
+    display: inline;
+  }
+
   .site-header__name {
     font-style: normal;
     font-size: 0.65rem;
