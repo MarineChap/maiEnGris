@@ -37,7 +37,7 @@ export default function HeroSection() {
         <div className="hero-split__aside">
           <div className="hero-dom">
             <h1 className="hero__title">Sur la trace de ses courses</h1>
-            <p className="hero__subtitle">En souvenir de Dominique Chaput · Taluyers</p>
+            <p className="hero__subtitle">En souvenir de Dominique Chaput</p>
             <p className="hero__intro">
               Dominique aimait se dépasser — 34 courses, des Alpes à la Martinique,
               de la Sainté Lyon à l'UTMB. Le défi : cumuler collectivement autant de kilomètres
