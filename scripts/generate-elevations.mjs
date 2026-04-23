@@ -12,7 +12,7 @@ import fs   from 'fs'
 import path from 'path'
 
 const ROOT      = new URL('..', import.meta.url).pathname
-const JSON_PATH = path.join(ROOT, 'src', 'data', 'strava_enriched.json')
+const JSON_PATH = path.join(ROOT, 'src', 'data', 'races.json')
 const GPX_DIR   = path.join(ROOT, 'public', 'gpx')
 const SAMPLES   = 60
 
@@ -53,4 +53,4 @@ for (const entry of Object.values(data)) {
 }
 
 fs.writeFileSync(JSON_PATH, JSON.stringify(data, null, 2), 'utf8')
-console.log(`\n💾  strava_enriched.json mis à jour\n`)
+console.log(`\n💾  races.json mis à jour\n`)

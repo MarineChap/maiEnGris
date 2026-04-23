@@ -23,7 +23,7 @@ import path from 'path'
 
 const PROJECT_ROOT = new URL('..', import.meta.url).pathname
 const RACES_CSV    = path.join(PROJECT_ROOT, 'course_dom.txt')
-const OUT_JSON     = path.join(PROJECT_ROOT, 'src', 'data', 'strava_enriched.json')
+const OUT_JSON     = path.join(PROJECT_ROOT, 'src', 'data', 'races.json')
 const OUT_GPX_DIR  = path.join(PROJECT_ROOT, 'public', 'gpx')
 
 // Sports considérés comme "course à pied" — on exclut vélo, natation, etc.
@@ -156,10 +156,23 @@ function parseRacesCsv(raw) {
     }
     cols.push(cur.trim())
     if (cols.length < 3) return null
-    const [date, name, distRaw] = cols
+    const [date, name, distRaw, elevRaw = '', url = '', anecdote = '', photosRaw = ''] = cols
     const distance_km = parseInt(distRaw)
     if (!date || isNaN(distance_km)) return null
-    return { date: date.trim(), name: name.trim(), distance_km }
+
+    const elevMatch = elevRaw.replace(/\s/g, '').match(/^([\d.]+)m\+?$/i)
+    const photos = photosRaw ? photosRaw.split('|').map(p => p.trim()).filter(Boolean) : []
+
+    return {
+      date:               date.trim(),
+      name:               name.trim(),
+      distance_km,
+      officialDistanceKm: distance_km,
+      officialElevGain_m: elevMatch ? parseInt(elevMatch[1], 10) : null,
+      url:                url || null,
+      anecdote:           anecdote || null,
+      photos,
+    }
   }).filter(Boolean)
 }
 
@@ -257,17 +270,22 @@ for (const race of races) {
   console.log(`   ✅  "${race.name}"  ${parsed.distanceKm} km  ${formatDuration(parsed.durationSec)}  +${parsed.elevGainM} m${partialNote}`)
 
   enriched[race.date] = {
-    date:         race.date,
-    name:         race.name,
-    gpxFile:      g.filename,
-    gpxPath:      `/gpx/${safeName}.gpx`,
-    tracePartial: quality === 'partial',
-    distanceKm:   parsed.distanceKm,
-    duration:     formatDuration(parsed.durationSec),
-    durationSec:  parsed.durationSec,
-    elevGain_m:   parsed.elevGainM,
-    avgHeartRate: parsed.avgHr,
-    startTime:    parsed.startTime,
+    date:               race.date,
+    name:               race.name,
+    officialDistanceKm: race.officialDistanceKm,
+    officialElevGain_m: race.officialElevGain_m,
+    url:                race.url,
+    anecdote:           race.anecdote,
+    photos:             race.photos,
+    gpxFile:            g.filename,
+    gpxPath:            `/gpx/${safeName}.gpx`,
+    tracePartial:       quality === 'partial',
+    distanceKm:         parsed.distanceKm,
+    duration:           formatDuration(parsed.durationSec),
+    durationSec:        parsed.durationSec,
+    elevGain_m:         parsed.elevGainM,
+    avgHeartRate:       parsed.avgHr,
+    startTime:          parsed.startTime,
   }
 }
 
@@ -284,7 +302,30 @@ if (noMatch.length) {
   console.log('     Pour ajuster la tolérance : modifier DIST_TOLERANCE_KM en haut du script.')
 }
 
+// ─── Ajouter les courses sans GPX (avec champs Strava à null) ─────────────────
+for (const race of noMatch) {
+  enriched[race.date] = {
+    date:               race.date,
+    name:               race.name,
+    officialDistanceKm: race.officialDistanceKm,
+    officialElevGain_m: race.officialElevGain_m,
+    url:                race.url,
+    anecdote:           race.anecdote,
+    photos:             race.photos,
+    gpxFile:            null,
+    gpxPath:            null,
+    tracePartial:       null,
+    distanceKm:         null,
+    duration:           null,
+    durationSec:        null,
+    elevGain_m:         null,
+    avgHeartRate:       null,
+    startTime:          null,
+    elevationSamples:   null,
+  }
+}
+
 // ─── Écriture JSON ────────────────────────────────────────────────────────────
 fs.mkdirSync(path.dirname(OUT_JSON), { recursive: true })
 fs.writeFileSync(OUT_JSON, JSON.stringify(enriched, null, 2), 'utf8')
-console.log(`\n💾  Résultat → src/data/strava_enriched.json\n`)
+console.log(`\n💾  Résultat → src/data/races.json\n`)

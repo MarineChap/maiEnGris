@@ -1,6 +1,6 @@
 /**
  * Renders a tiny elevation profile silhouette from pre-computed samples.
- * No network fetch — data comes from strava_enriched.json.
+ * No network fetch — data comes from races.json.
  */
 export default function GpxTrace({ samples, partial }) {
   if (!samples || samples.length < 2) return null

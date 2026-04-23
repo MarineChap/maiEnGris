@@ -1,57 +1,34 @@
-import csvRaw     from "../../course_dom.txt?raw"
-import stravaData from "./strava_enriched.json"
+import racesData from "./races.json"
 
-// Parse course_dom.txt — format: Date,Course,Distance,Denivele
-// e.g. 2021-11-27,"La Sainté Lyon",78 km,2140 m+
-function parseCsv(raw) {
-  const lines = raw.trim().split("\n").slice(1) // skip header
-  return lines
-    .map(line => {
-      // Split respecting quoted fields
-      const cols = []
-      let current = ""
-      let inQuotes = false
-      for (const ch of line) {
-        if (ch === '"') { inQuotes = !inQuotes }
-        else if (ch === "," && !inQuotes) { cols.push(current); current = "" }
-        else { current += ch }
-      }
-      cols.push(current)
-      if (cols.length < 4) return null
-      const [date, name, distRaw, denivRaw, urlRaw, anecdoteRaw, photoRaw] = cols
-      return {
-        date: date.trim(),
-        name: name.trim(),
-        distance_km: parseInt(distRaw),
-        denivele_m: parseInt(denivRaw),
-        url: urlRaw ? urlRaw.trim() : null,
-        anecdote: anecdoteRaw ? anecdoteRaw.trim() : "",
-        photos: photoRaw
-          ? photoRaw.trim().split('|').map(p => p.trim()).filter(Boolean)
-          : [],
-      }
-    })
-    .filter(r => r && r.date && !isNaN(r.distance_km))
-    .sort((a, b) => a.date.localeCompare(b.date))
-}
-
-const rawRaces = parseCsv(csvRaw)
+const rawRaces = Object.values(racesData)
+  .sort((a, b) => a.date.localeCompare(b.date))
 
 // Compute cumulative km and assign IDs
 let cumul = 0
 export const RACES = rawRaces.map((r, i) => {
-  cumul += r.distance_km
+  cumul += r.officialDistanceKm
   return {
     id: `race-${i + 1}`,
     name: r.name,
     date: r.date,
-    distance_km: r.distance_km,
-    denivele_m: r.denivele_m,
+    distance_km: r.officialDistanceKm,
+    denivele_m: r.officialElevGain_m,
     cumulativeKm: cumul,
     url: r.url || null,
     anecdote: r.anecdote,
-    photos: r.photos,
-    suunto: stravaData[r.date] ?? null,
+    photos: r.photos ?? [],
+    suunto: r.gpxPath ? {
+      gpxFile:          r.gpxFile,
+      gpxPath:          r.gpxPath,
+      tracePartial:     r.tracePartial,
+      distanceKm:       r.distanceKm,
+      duration:         r.duration,
+      durationSec:      r.durationSec,
+      elevGain_m:       r.elevGain_m,
+      avgHeartRate:     r.avgHeartRate,
+      startTime:        r.startTime,
+      elevationSamples: r.elevationSamples,
+    } : null,
   }
 })
 
