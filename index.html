@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#808080" />
 
     <!-- SEO principal -->
     <title>Sur les Traces de Dom — Mai en Gris | Hommage à Dominique Chaput</title>
@@ -13,6 +15,12 @@
     <meta name="robots" content="index, follow" />
     <meta name="language" content="fr" />
     <link rel="canonical" href="https://surlestracesdedom.fr" />
+
+    <!-- SEO local — Taluyers -->
+    <meta name="geo.region" content="FR-ARA" />
+    <meta name="geo.placename" content="Taluyers, Rhône, France" />
+    <meta name="geo.position" content="45.5660;4.7410" />
+    <meta name="ICBM" content="45.5660, 4.7410" />
 
     <!-- Open Graph (partage réseaux sociaux) -->
     <meta property="og:type" content="website" />
@@ -29,7 +37,7 @@
     <meta name="twitter:description" content="Courons en hommage à Dominique Chaput (Taluyers) pour financer la recherche contre le glioblastome. Rejoignez le défi solidaire Mai en Gris." />
     <meta name="twitter:image" content="https://surlestracesdedom.fr/dom_chaput.jpeg" />
 
-    <!-- Données structurées JSON-LD -->
+    <!-- Données structurées JSON-LD — Événement -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,19 +50,42 @@
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
       "inLanguage": "fr",
+      "image": "https://surlestracesdedom.fr/dom_chaput.jpeg",
       "keywords": "surlestracesdedom, glioblastome, cancer, mai en gris, Dominique Chaput, taluyers, trail solidaire, hommage, recherche médicale",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://surlestracesdedom.fr"
+      },
       "organizer": {
         "@type": "Organization",
-        "name": "Sur les Traces de Dom — Mai en Gris"
+        "name": "Des Étoiles Dans La Mer"
       },
       "about": {
         "@type": "Person",
         "name": "Dominique Chaput",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "Taluyers"
+          "addressLocality": "Taluyers",
+          "addressRegion": "Rhône",
+          "addressCountry": "FR"
         }
       }
+    }
+    </script>
+
+    <!-- Données structurées JSON-LD — Personne -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Dominique Chaput",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Taluyers",
+        "addressRegion": "Rhône",
+        "addressCountry": "FR"
+      },
+      "description": "Coureur de trail de Taluyers, emporté par un glioblastome. Passionné de montagne, il a participé à 34 courses dont l'UTMB, la Sainté Lyon et des trails en Martinique."
     }
     </script>
 
