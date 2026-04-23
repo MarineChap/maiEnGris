@@ -68,7 +68,6 @@
   overflow: hidden;
 }
 
-/* Split: left = white, right = navy */
 .hero-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -284,54 +283,44 @@
 
 /* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .site-header {
+    padding: 0 16px;
+    height: auto;
+    min-height: 56px;
+  }
 
   /*
-   * Header : grille 2×2 avec display:contents sur les wrappers
-   * pour placer visuellement les 4 éléments sans changer l’ordre du DOM.
+   * Ligne 1 : "Mai en Gris" | "Défi sportif au profit de"
+   *   → même style label : petit, atténué, uppercase
    *
-   * Ligne 1 : nom  |  lien    — même style (sky, gras, italique)
-   * Ligne 2 : tagline | blurb — même style (discret, uppercase)
+   * Ligne 2 : "En souvenir de Dominique Chaput" | "Des Étoiles Dans La Mer →"
+   *   → même style valeur : sky, gras, italique
    */
-  .site-header {
-    padding: 8px 16px;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      "brand-name  assoc-link"
-      "tagline     blurb";
-    row-gap: 2px;
-  }
-
-  .site-header__brand { display: contents; }
-  .site-header__right { display: contents; }
-
-  /* Ligne 1 — style fort : sky, italique, gras */
   .site-header__name {
-    grid-area: brand-name;
-  }
-
-  .site-header__link {
-    grid-area: assoc-link;
-    justify-self: end;
-    font-style: italic;
-    font-size: 1rem;
+    font-style: normal;
+    font-size: 0.65rem;
     font-weight: 700;
-    white-space: nowrap;
-  }
-
-  /* Ligne 2 — style discret : blanc atténué, uppercase, petite taille */
-  .site-header__tagline {
-    grid-area: tagline;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .site-header__blurb {
-    grid-area: blurb;
-    justify-self: end;
-    text-align: right;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: rgba(255, 255, 255, 0.65);
+  }
+
+  .site-header__tagline {
+    font-size: 0.875rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--color-sky);
+    text-transform: none;
+    letter-spacing: 0.01em;
+  }
+
+  .site-header__link {
+    white-space: nowrap;
   }
 
   .hero-split {
