@@ -1,4 +1,4 @@
-/* ─── SiteHeader ─────────────────────────────────────────────── */
+/* ─── SiteHeader ────────────────────────────────────────────── */
 .site-header {
   background: var(--color-navy);
   padding: 0 32px;
@@ -62,7 +62,7 @@
   opacity: 0.8;
 }
 
-/* ─── HeroSection ─────────────────────────────────────────────── */
+/* ─── HeroSection ────────────────────────────────────────────── */
 .hero-wrapper {
   position: relative;
   overflow: hidden;
@@ -97,7 +97,7 @@
   z-index: 1;
 }
 
-/* ─── Dom block (navy panel) ──────────────────────────────────── */
+/* ─── Dom block (navy panel) ────────────────────────────────── */
 .hero-dom {
   flex: 1;
   min-width: 220px;
@@ -256,7 +256,12 @@
   font-weight: 700;
 }
 
-/* ─── SiteFooter ─────────────────────────────────────────────── */
+/* ─── Mobile donate button (hidden on desktop) ────────────────── */
+.hero-assoc__donate-mobile {
+  display: none;
+}
+
+/* ─── SiteFooter ────────────────────────────────────────────── */
 .site-footer {
   background: var(--color-navy);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -277,7 +282,7 @@
   color: rgba(255, 255, 255, 0.35);
 }
 
-/* ─── Responsive ─────────────────────────────────────────────── */
+/* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .site-header {
     padding: 0 16px;
@@ -306,5 +311,25 @@
 
   .site-footer {
     padding: 16px;
+  }
+
+  .hero-assoc__donate-mobile {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 14px 24px;
+    background: var(--color-navy);
+    color: var(--color-white);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    margin-top: 8px;
+    transition: filter var(--transition-base);
+  }
+
+  .hero-assoc__donate-mobile:active {
+    filter: brightness(1.2);
   }
 }
