@@ -1,4 +1,5 @@
 import '../../styles/layout.css'
+import { DONATION_URL } from '../../data/races'
 
 export default function HeroSection() {
   return (
@@ -30,6 +31,15 @@ export default function HeroSection() {
                 <li><span>50 €</span> vous revient à <strong>17 €</strong></li>
               </ul>
             </div>
+
+            <a
+              href={DONATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-assoc__donate-mobile"
+            >
+              Faire un don →
+            </a>
           </div>
         </div>
 
