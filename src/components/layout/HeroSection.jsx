@@ -23,11 +23,11 @@ export default function HeroSection() {
             </p>
 
             <div className="hero-assoc__tax">
-              <p className="hero-assoc__tax-label">Après déduction fiscale (66 %)</p>
+              <p className="hero-assoc__tax-label">Après déduction fiscale (66 %)</p>
               <ul className="hero-assoc__tax-list">
-                <li><span>150 €</span> vous revient à <strong>51 €</strong></li>
-                <li><span>100 €</span> vous revient à <strong>34 €</strong></li>
-                <li><span>50 €</span> vous revient à <strong>17 €</strong></li>
+                <li><span>150 €</span> vous revient à <strong>51 €</strong></li>
+                <li><span>100 €</span> vous revient à <strong>34 €</strong></li>
+                <li><span>50 €</span> vous revient à <strong>17 €</strong></li>
               </ul>
             </div>
           </div>
@@ -40,8 +40,8 @@ export default function HeroSection() {
             <p className="hero__subtitle">En souvenir de Dominique Chaput</p>
             <p className="hero__intro">
               Dominique aimait se dépasser — 34 courses, des Alpes à la Martinique,
-              de la Sainté Lyon à l'UTMB. Le défi : cumuler collectivement autant de kilomètres
-              que les plus grandes courses de sa vie. Que vous marchiez 2 km ou couriez un marathon,
+              de la Sainté Lyon à l'UTMB. Le défi : cumuler collectivement autant de kilomètres
+              que les plus grandes courses de sa vie. Que vous marchiez 2 km ou couriez un marathon,
               chaque pas s'ajoute au compteur commun.
             </p>
             <p className="hero__hint">
@@ -52,8 +52,9 @@ export default function HeroSection() {
           <div className="hero__portrait-frame">
             <img
               src="/dom_chaput.jpeg"
-              alt="Dominique Chaput — coureur de trail"
+              alt="Dominique Chaput, coureur de trail de Taluyers"
               className="hero__portrait"
+              fetchPriority="high"
               onError={(e) => { e.target.style.display = 'none' }}
             />
           </div>
