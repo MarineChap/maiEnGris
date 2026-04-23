@@ -36,7 +36,7 @@ export default function HeroSection() {
         {/* ── Right: navy — Dominique, the project ── */}
         <div className="hero-split__aside">
           <div className="hero-dom">
-            <h1 className="hero__title">Sur les Traces de Dom — Mai en Gris</h1>
+            <h1 className="hero__title">Sur la trace de ses courses</h1>
             <p className="hero__subtitle">En souvenir de Dominique Chaput · Taluyers</p>
             <p className="hero__intro">
               Dominique aimait se dépasser — 34 courses, des Alpes à la Martinique,
