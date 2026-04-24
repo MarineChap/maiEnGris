@@ -66,8 +66,8 @@ export default function MilestoneMarker({
       initial={false}
       transition={{ duration: 0 }}
     >
-      {/* Large transparent hit area */}
-      <circle r={28} fill="transparent" />
+      {/* Hit area restricted to the dot size to avoid overlapping neighbours */}
+      <circle r={10} fill="transparent" />
 
       {state === 'locked' && (
         <>

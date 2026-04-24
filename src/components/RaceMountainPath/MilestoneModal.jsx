@@ -80,20 +80,32 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
       >
         <div className="modal-header">
           <div className="modal-header__info">
-            <h2 className="modal-header__title">{race.name}</h2>
+            <div className="modal-header__title-row">
+              <h2 className="modal-header__title">{race.name}</h2>
+              {race.suunto?.tracePartial && race.suunto.distanceKm && (
+                <span className="modal-header__partial">
+                  Tracé GPS partiel · {race.suunto.distanceKm} km / {race.distance_km} km
+                </span>
+              )}
+            </div>
             <div className="modal-header__meta">
               <span>{formatDate(race.date)}</span>
               <span>·</span>
               <span>{race.distance_km} km</span>
               <span>·</span>
               <span>+{race.denivele_m.toLocaleString('fr-FR')} m</span>
-              {race.suunto?.duration && <>
-                <span>·</span>
-                <span>⏱ {race.suunto.duration}</span>
-              </>}
               {race.suunto?.startTime && <>
                 <span>·</span>
-                <span>départ {formatStartTime(race.suunto.startTime)}</span>
+                <span>départ à {formatStartTime(race.suunto.startTime)}</span>
+              </>}
+              {race.suunto?.duration && <>
+                <span>·</span>
+                <span>⏱ {race.suunto.tracePartial && (
+                  <span
+                    className="gpx-partial-marker"
+                    title="Tracé partiel — la trace GPS ne couvre pas l'intégralité de la course"
+                  >&gt; </span>
+                )}{race.suunto.duration}</span>
               </>}
               {race.suunto?.avgHeartRate && <>
                 <span>·</span>

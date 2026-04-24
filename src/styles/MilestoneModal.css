@@ -66,11 +66,26 @@
   gap: 4px;
 }
 
+.modal-header__title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .modal-header__title {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 700;
   line-height: 1.3;
+}
+
+.modal-header__partial {
+  font-size: 0.7rem;
+  font-weight: 400;
+  opacity: 0.55;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .modal-header__meta {
@@ -213,6 +228,10 @@
 }
 .gpx-trace--partial path {
   opacity: 0.45;
+}
+.gpx-partial-marker {
+  cursor: default;
+  opacity: 0.7;
 }
 
 .modal-race-link {

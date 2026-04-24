@@ -52,7 +52,7 @@ export default function MountainSVG({
     let minDist = Infinity
     for (const pos of markerPositions) {
       const d = Math.hypot(pos.x - svgPt.x, pos.y - svgPt.y)
-      if (d < 28 && d < minDist) {
+      if (d < 10 && d < minDist) {
         minDist = d
         nearest = pos
       }
