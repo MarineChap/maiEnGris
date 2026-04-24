@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { addContribution } from '../../services/contributions'
+import { DONATION_URL } from '../../data/races'
 import '../../styles/AddKmModal.css'
 
 export default function AddKmModal({ onClose, onSuccess }) {
@@ -16,8 +17,8 @@ export default function AddKmModal({ onClose, onSuccess }) {
   async function handleSubmit(e) {
     e.preventDefault()
     const kmNum = parseFloat(km)
-    if (!kmNum || kmNum <= 0 || kmNum > 999) {
-      setError('Entrez un nombre de km entre 0.1 et 999.')
+    if (!kmNum || kmNum <= 0) {
+      setError('Entrez un nombre de km valide.')
       return
     }
     setLoading(true)
@@ -71,6 +72,12 @@ export default function AddKmModal({ onClose, onSuccess }) {
                 compteur collectif. Vous contribuez à honorer la mémoire de
                 Dominique.
               </p>
+              <p className="addkm-don-nudge addkm-don-nudge--success">
+                Et si vous faisiez aussi un don à la recherche&nbsp;?{' '}
+                <a href={DONATION_URL} target="_blank" rel="noopener noreferrer" className="addkm-don-link">
+                  Faire un don →
+                </a>
+              </p>
               <button className="addkm-btn" onClick={onClose}>
                 Fermer
               </button>
@@ -96,7 +103,6 @@ export default function AddKmModal({ onClose, onSuccess }) {
                       className="addkm-input addkm-input--km"
                       type="number"
                       min="0.1"
-                      max="999"
                       step="0.1"
                       placeholder="ex: 10"
                       value={km}
@@ -140,6 +146,13 @@ export default function AddKmModal({ onClose, onSuccess }) {
                 </div>
 
                 {error && <p className="addkm-error" role="alert">{error}</p>}
+
+                <p className="addkm-don-nudge">
+                  Chaque geste compte — pensez aussi au don pour soutenir la recherche.{' '}
+                  <a href={DONATION_URL} target="_blank" rel="noopener noreferrer" className="addkm-don-link">
+                    Faire un don →
+                  </a>
+                </p>
 
                 <button className="addkm-btn" type="submit" disabled={loading}>
                   {loading ? 'Envoi…' : '+ Ajouter ces km'}

@@ -245,3 +245,39 @@
   transition: opacity 0.15s;
 }
 .modal-race-link:hover { opacity: 0.72; }
+
+@media (max-width: 600px) {
+  .modal-backdrop {
+    padding: 16px 0;
+    align-items: flex-start;
+    padding-top: 24px;
+  }
+
+  .modal-nav-row {
+    position: relative;
+    gap: 0;
+    max-height: calc(100vh - 48px);
+  }
+
+  .modal-card {
+    max-width: calc(100vw - 32px);
+    min-width: 0;
+  }
+
+  .modal-nav-btn {
+    position: absolute;
+    top: 60px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    font-size: 1.4rem;
+  }
+
+  .modal-nav-btn:first-child {
+    left: -8px;
+  }
+
+  .modal-nav-btn:last-child {
+    right: -8px;
+  }
+}

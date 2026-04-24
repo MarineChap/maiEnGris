@@ -8,42 +8,35 @@ CREATE TABLE contributions (
   id         uuid        DEFAULT gen_random_uuid() PRIMARY KEY,
   created_at timestamptz DEFAULT now()             NOT NULL,
   prenom     text,
-  km         numeric     NOT NULL CHECK (km > 0 AND km <= 999),
-  message    text        CHECK (char_length(message) <= 280),
-  validated  boolean     DEFAULT false             NOT NULL
+  km         numeric     NOT NULL CHECK (km > 0),
+  message    text        CHECK (char_length(message) <= 280)
 );
 
 -- 2. Row Level Security
 ALTER TABLE contributions ENABLE ROW LEVEL SECURITY;
 
--- Lecture publique : uniquement les contributions validées
+-- Lecture publique : toutes les contributions sont visibles
 CREATE POLICY "lecture publique"
-  ON contributions FOR SELECT USING (validated = true);
+  ON contributions FOR SELECT USING (true);
 
--- Insertion publique : validated est toujours false (modération manuelle)
+-- Insertion publique sans modération
 CREATE POLICY "insertion publique"
   ON contributions FOR INSERT
-  WITH CHECK (km > 0 AND km <= 999 AND validated = false);
+  WITH CHECK (km > 0);
 
 -- 3. Temps réel
 ALTER PUBLICATION supabase_realtime ADD TABLE contributions;
 
 -- ============================================================
--- Si la table EXISTS DÉJÀ, exécutez uniquement :
+-- Migration si la table EXISTE DÉJÀ (supprimer la validation)
 -- ============================================================
--- ALTER TABLE contributions ADD COLUMN IF NOT EXISTS message   text CHECK (char_length(message) <= 280);
--- ALTER TABLE contributions ADD COLUMN IF NOT EXISTS validated boolean DEFAULT false NOT NULL;
+-- DROP POLICY IF EXISTS "lecture publique" ON contributions;
 -- DROP POLICY IF EXISTS "insertion publique" ON contributions;
--- CREATE POLICY "insertion publique"
---   ON contributions FOR INSERT
---   WITH CHECK (km > 0 AND km <= 999 AND validated = false);
--- UPDATE contributions SET validated = true; -- valider les contributions existantes
-
--- ============================================================
--- Valider des contributions (depuis le dashboard SQL)
--- ============================================================
--- UPDATE contributions SET validated = true WHERE id = '<uuid>';
--- UPDATE contributions SET validated = true WHERE created_at > '2026-04-21';
+-- ALTER TABLE contributions DROP COLUMN IF EXISTS validated;
+-- ALTER TABLE contributions DROP CONSTRAINT IF EXISTS contributions_km_check;
+-- ALTER TABLE contributions ADD CONSTRAINT contributions_km_check CHECK (km > 0);
+-- CREATE POLICY "lecture publique" ON contributions FOR SELECT USING (true);
+-- CREATE POLICY "insertion publique" ON contributions FOR INSERT WITH CHECK (km > 0);
 
 -- ============================================================
 -- 4. Table settings (clé/valeur pour config dynamique)

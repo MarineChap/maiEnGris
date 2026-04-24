@@ -978,7 +978,7 @@
     "officialDistanceKm": 148,
     "officialElevGain_m": 10480,
     "url": "https://utcam06.com/",
-    "anecdote": "Première course avec deux nuits passées dehors. Un cap franchi.",
+    "anecdote": "Première course avec deux nuits passées dehors. Un cap franchi.\nObligé de faire une pause en haut de la montagne pour laisser le temps à Nath et Annabel de finir leur restaurant pour être à l'arrivée avant lui.",
     "photos": [
       "/photos/mercantour.jpg",
       "/photos/mercantour_1.jpg",
@@ -1690,7 +1690,7 @@
     "officialDistanceKm": 57,
     "officialElevGain_m": 2450,
     "url": "https://ardeche-trail-la-voie-romaine.com/",
-    "anecdote": "Gagné une assiette en grès/porcelaine, fièrement affichée dans le garage.",
+    "anecdote": null,
     "photos": [
       "/photos/trail_ardechois_2008.jpeg"
     ],
@@ -1797,25 +1797,6 @@
       "/photos/marathonlyon2.png",
       "/photos/marathonlyon1.png"
     ],
-    "gpxFile": null,
-    "gpxPath": null,
-    "tracePartial": null,
-    "distanceKm": null,
-    "duration": null,
-    "durationSec": null,
-    "elevGain_m": null,
-    "avgHeartRate": null,
-    "startTime": null,
-    "elevationSamples": null
-  },
-  "2005-09-10": {
-    "date": "2005-09-10",
-    "name": "Marathon du Medoc",
-    "officialDistanceKm": 42,
-    "officialElevGain_m": 3000,
-    "url": null,
-    "anecdote": "A vérifier",
-    "photos": [],
     "gpxFile": null,
     "gpxPath": null,
     "tracePartial": null,

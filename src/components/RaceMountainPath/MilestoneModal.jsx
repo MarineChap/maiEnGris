@@ -40,9 +40,23 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
 
   const photos = race.photos ?? []
   const [photoIndex, setPhotoIndex] = useState(0)
+  const [touchStartX, setTouchStartX] = useState(null)
 
   // Reset photo index when race changes
   useEffect(() => { setPhotoIndex(0) }, [race.id])
+
+  function handleTouchStart(e) {
+    setTouchStartX(e.touches[0].clientX)
+  }
+  function handleTouchEnd(e) {
+    if (touchStartX === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX
+    if (Math.abs(dx) > 50) {
+      if (dx > 0 && prevRace) onNavigate(prevRace)
+      else if (dx < 0 && nextRace) onNavigate(nextRace)
+    }
+    setTouchStartX(null)
+  }
 
   useEffect(() => {
     function onKey(e) {
@@ -77,6 +91,8 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
         className="modal-card"
         variants={cardVariants}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
         <div className="modal-header">
           <div className="modal-header__info">
