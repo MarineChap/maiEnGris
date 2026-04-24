@@ -300,9 +300,11 @@ export default function MountainSVG({
                 fontSize="8.5"
                 fontWeight={isCompleted ? '700' : '600'}
                 fontFamily={FONT}
+                fontStyle="italic"
                 fill={textFill}
                 opacity={textOpacity}
                 letterSpacing="0.04em"
+                transform={`rotate(-30, ${g.xCenter}, ${LABEL_Y})`}
               >
                 {g.year}
               </text>

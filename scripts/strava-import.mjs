@@ -22,7 +22,7 @@ import fs   from 'fs'
 import path from 'path'
 
 const PROJECT_ROOT = new URL('..', import.meta.url).pathname
-const RACES_CSV    = path.join(PROJECT_ROOT, 'course_dom.txt')
+const RACES_JSON   = path.join(PROJECT_ROOT, 'src', 'data', 'races.json')
 const OUT_JSON     = path.join(PROJECT_ROOT, 'src', 'data', 'races.json')
 const OUT_GPX_DIR  = path.join(PROJECT_ROOT, 'public', 'gpx')
 
@@ -143,40 +143,23 @@ function matchQuality(gpxKm, raceKm, sport) {
   return null
 }
 
-// ─── Parse course_dom.txt ─────────────────────────────────────────────────────
-console.log('\n📋  Lecture de course_dom.txt…')
-function parseRacesCsv(raw) {
-  return raw.trim().split('\n').slice(1).map(line => {
-    const cols = []
-    let cur = '', inQ = false
-    for (const ch of line) {
-      if (ch === '"') { inQ = !inQ }
-      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = '' }
-      else cur += ch
-    }
-    cols.push(cur.trim())
-    if (cols.length < 3) return null
-    const [date, name, distRaw, elevRaw = '', url = '', anecdote = '', photosRaw = ''] = cols
-    const distance_km = parseInt(distRaw)
-    if (!date || isNaN(distance_km)) return null
-
-    const elevMatch = elevRaw.replace(/\s/g, '').match(/^([\d.]+)m\+?$/i)
-    const photos = photosRaw ? photosRaw.split('|').map(p => p.trim()).filter(Boolean) : []
-
-    return {
-      date:               date.trim(),
-      name:               name.trim(),
-      distance_km,
-      officialDistanceKm: distance_km,
-      officialElevGain_m: elevMatch ? parseInt(elevMatch[1], 10) : null,
-      url:                url || null,
-      anecdote:           anecdote || null,
-      photos,
-    }
-  }).filter(Boolean)
+// ─── Parse races.json ─────────────────────────────────────────────────────────
+console.log('\n📋  Lecture de races.json…')
+if (!fs.existsSync(RACES_JSON)) {
+  console.error(`❌  Fichier introuvable : ${RACES_JSON}`)
+  process.exit(1)
 }
-
-const races = parseRacesCsv(fs.readFileSync(RACES_CSV, 'utf8'))
+const racesJson = JSON.parse(fs.readFileSync(RACES_JSON, 'utf8'))
+const races = Object.values(racesJson).map(r => ({
+  date:               r.date,
+  name:               r.name,
+  distance_km:        r.officialDistanceKm,
+  officialDistanceKm: r.officialDistanceKm,
+  officialElevGain_m: r.officialElevGain_m,
+  url:                r.url ?? null,
+  anecdote:           r.anecdote ?? null,
+  photos:             r.photos ?? [],
+})).filter(r => r.date && r.distance_km)
 console.log(`   → ${races.length} courses`)
 
 // Index date → [courses]
@@ -269,6 +252,7 @@ for (const race of races) {
     : ''
   console.log(`   ✅  "${race.name}"  ${parsed.distanceKm} km  ${formatDuration(parsed.durationSec)}  +${parsed.elevGainM} m${partialNote}`)
 
+  const existing = racesJson[race.date]
   enriched[race.date] = {
     date:               race.date,
     name:               race.name,
@@ -286,6 +270,7 @@ for (const race of races) {
     elevGain_m:         parsed.elevGainM,
     avgHeartRate:       parsed.avgHr,
     startTime:          parsed.startTime,
+    elevationSamples:   existing?.elevationSamples ?? null,
   }
 }
 
@@ -304,6 +289,7 @@ if (noMatch.length) {
 
 // ─── Ajouter les courses sans GPX (avec champs Strava à null) ─────────────────
 for (const race of noMatch) {
+  const existing = racesJson[race.date]
   enriched[race.date] = {
     date:               race.date,
     name:               race.name,
@@ -312,16 +298,16 @@ for (const race of noMatch) {
     url:                race.url,
     anecdote:           race.anecdote,
     photos:             race.photos,
-    gpxFile:            null,
-    gpxPath:            null,
-    tracePartial:       null,
-    distanceKm:         null,
-    duration:           null,
-    durationSec:        null,
-    elevGain_m:         null,
-    avgHeartRate:       null,
-    startTime:          null,
-    elevationSamples:   null,
+    gpxFile:            existing?.gpxFile ?? null,
+    gpxPath:            existing?.gpxPath ?? null,
+    tracePartial:       existing?.tracePartial ?? null,
+    distanceKm:         existing?.distanceKm ?? null,
+    duration:           existing?.duration ?? null,
+    durationSec:        existing?.durationSec ?? null,
+    elevGain_m:         existing?.elevGain_m ?? null,
+    avgHeartRate:       existing?.avgHeartRate ?? null,
+    startTime:          existing?.startTime ?? null,
+    elevationSamples:   existing?.elevationSamples ?? null,
   }
 }
 
