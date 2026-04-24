@@ -1771,7 +1771,10 @@
     "officialElevGain_m": 1000,
     "url": "https://www.beaumecour.fr/",
     "anecdote": "Demander à Marc",
-    "photos": [],
+    "photos": [
+      "/photos/beaume2.png",
+      "/photos/beaume1.png"
+    ],
     "gpxFile": null,
     "gpxPath": null,
     "tracePartial": null,
@@ -1791,7 +1794,8 @@
     "url": "https://www.marathondulyon.com/",
     "anecdote": "Première expérience de course à pied : un marathon. Résultat : des jambes qui ne veulent plus s'arrêter, et l'impossibilité totale de rester immobile à l'arrivée.",
     "photos": [
-      "/photos/marathon_lyon.jpg"
+      "/photos/marathonlyon2.png",
+      "/photos/marathonlyon1.png"
     ],
     "gpxFile": null,
     "gpxPath": null,
