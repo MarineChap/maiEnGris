@@ -57,6 +57,11 @@ export default function HeroSection() {
             <p className="hero__hint">
               Cliquez sur chaque étape du chemin pour découvrir son histoire.
             </p>
+            <p className="hero__contribute">
+              Vous avez des photos ou des anecdotes à partager ?{' '}
+              <a href="mailto:marine@surlestracesdedom.fr">Contactez la famille Chaput</a>
+              , on les ajoutera avec plaisir.
+            </p>
           </div>
 
           <div className="hero__portrait-frame">

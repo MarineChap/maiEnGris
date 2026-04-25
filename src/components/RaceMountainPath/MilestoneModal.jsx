@@ -25,6 +25,52 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
+function renderInline(text) {
+  return text.split(/(\*\*[^*]+\*\*)/).map((part, i) =>
+    part.startsWith('**') && part.endsWith('**')
+      ? <strong key={i}>{part.slice(2, -2)}</strong>
+      : part
+  )
+}
+
+function renderMarkdown(text) {
+  const lines = text.split('\n')
+  const elements = []
+  let i = 0
+  while (i < lines.length) {
+    const line = lines[i]
+    if (line.startsWith('- ')) {
+      const items = []
+      while (i < lines.length && lines[i].startsWith('- ')) {
+        items.push(lines[i].slice(2))
+        i++
+      }
+      elements.push(
+        <ul key={`ul-${i}`}>
+          {items.map((item, j) => <li key={j}>{renderInline(item)}</li>)}
+        </ul>
+      )
+    } else if (line === '') {
+      i++
+    } else {
+      const textLines = []
+      while (i < lines.length && !lines[i].startsWith('- ') && lines[i] !== '') {
+        textLines.push(lines[i])
+        i++
+      }
+      elements.push(
+        <p key={`p-${i}`}>
+          {textLines.map((l, j) => j === 0
+            ? renderInline(l)
+            : [<br key={j} />, renderInline(l)]
+          )}
+        </p>
+      )
+    }
+  }
+  return elements
+}
+
 function formatStartTime(isoStr) {
   if (!isoStr) return null
   const d = new Date(isoStr)
@@ -180,9 +226,11 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
         )}
 
         <div className="modal-body">
-          <p className={`modal-anecdote${!race.anecdote ? ' modal-anecdote--placeholder' : ''}`}>
-            {race.anecdote || "L'anecdote de cette course sera bientôt ajoutée."}
-          </p>
+          <div className={`modal-anecdote${!race.anecdote ? ' modal-anecdote--placeholder' : ''}`}>
+            {race.anecdote
+              ? renderMarkdown(race.anecdote)
+              : "L'anecdote de cette course sera bientôt ajoutée."}
+          </div>
           {race.url && (
             <a
               href={race.url}

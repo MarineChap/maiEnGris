@@ -211,6 +211,24 @@
   line-height: 1.7;
 }
 
+.modal-anecdote p {
+  margin: 0 0 0.6em;
+}
+.modal-anecdote p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-anecdote ul {
+  margin: 0 0 0.6em;
+  padding-left: 1.2em;
+}
+.modal-anecdote ul:last-child {
+  margin-bottom: 0;
+}
+.modal-anecdote li {
+  margin-bottom: 0.25em;
+}
+
 .modal-anecdote--placeholder {
   color: #8a9ac0;
   font-style: italic;
