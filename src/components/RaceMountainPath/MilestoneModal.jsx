@@ -155,7 +155,7 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
               <span>·</span>
               <span>{race.distance_km} km</span>
               <span>·</span>
-              <span>+{race.denivele_m.toLocaleString('fr-FR')} m</span>
+              {race.denivele_m != null && <span>+{race.denivele_m.toLocaleString('fr-FR')} m</span>}
               {race.suunto?.startTime && <>
                 <span>·</span>
                 <span>départ à {formatStartTime(race.suunto.startTime)}</span>
