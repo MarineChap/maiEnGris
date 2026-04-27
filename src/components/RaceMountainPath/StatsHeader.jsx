@@ -1,10 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import '../../styles/StatsHeader.css'
 
+function parseDonationAmount(str) {
+  if (!str) return null
+  const cleaned = String(str).replace(/[^\d.,]/g, '').replace(',', '.')
+  const num = parseFloat(cleaned)
+  return isNaN(num) ? null : num
+}
+
 export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, onDonate, onAddKm }) {
   const sentinelRef = useRef(null)
   const [stuck, setStuck] = useState(false)
   const progress = Math.min(currentKm / finalPeakKm, 1)
+  const donationAmount = parseDonationAmount(totalDonations)
+  const donationProgress = donationAmount != null ? Math.min(donationAmount / finalPeakKm, 1) : 0
 
   useEffect(() => {
     const sentinel = sentinelRef.current
@@ -48,7 +57,10 @@ export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, on
 
         <div className="stats-block stats-block--center">
           <span className="stats-km__label">Versés à la recherche</span>
-          <span className="stats-km__value">{totalDonations ?? '—'}</span>
+          <span className="stats-km__value">{totalDonations ?? '—'} / {finalPeakKm.toLocaleString('fr-FR')} €</span>
+          <div className="stats-km__bar">
+            <div className="stats-km__bar-fill" style={{ width: `${donationProgress * 100}%` }} />
+          </div>
         </div>
 
         <div className="stats-block stats-block--right">
