@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect, useEffect, useMemo } from 'react'
+import { useRef, useState, useLayoutEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import MilestoneMarker from './MilestoneMarker'
 
@@ -88,12 +88,6 @@ export default function MountainSVG({
     setRunnerPos({ x: runnerPt.x, y: runnerPt.y })
   }, [progress])
 
-  // Auto-scroll the active marker into view on mobile
-  useEffect(() => {
-    if (activeGroupRef.current && containerRef.current) {
-      activeGroupRef.current.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' })
-    }
-  }, [markerPositions])
 
   // Group marker x positions by year for the frieze
   const yearGroups = useMemo(() => {
@@ -156,6 +150,15 @@ export default function MountainSVG({
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
 
+          {/* Golden glow filter for the dream race marker */}
+          <filter id="dreamGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
           {/* Pattern for mountain texture */}
           <pattern id="mountainPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
             <path d="M0 100 L50 0 L100 100 Z" fill="rgba(29, 43, 82, 0.03)" />
@@ -205,11 +208,6 @@ export default function MountainSVG({
         {/* Summit altitude haze overlay */}
         <rect x="-5" y="-20" width="1035" height="535" fill="url(#summitHaze)" />
 
-        {/* Summit flag marker */}
-        <g transform="translate(1000, 40)">
-          <line x1="0" y1="0" x2="0" y2="-28" stroke="var(--color-navy)" strokeWidth={1.5} />
-          <polygon points="0,-28 16,-22 0,-16" fill="var(--color-sky)" />
-        </g>
 
         {/* Milestone markers — two passes so labels always render above all dots.
             Clicks are handled at SVG level (onClickCapture) so z-order doesn't affect them. */}

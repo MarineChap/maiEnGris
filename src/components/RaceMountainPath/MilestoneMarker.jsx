@@ -10,6 +10,7 @@ function computeStarPoints(outerR, innerR, numPoints) {
 }
 
 const STAR_POINTS = computeStarPoints(9, 4, 5)
+const DREAM_STAR_POINTS = computeStarPoints(6, 2.5, 5)
 
 // Split long names at a space near the midpoint
 function splitName(name) {
@@ -54,6 +55,116 @@ export default function MilestoneMarker({
   const showDot = mode === 'all' || mode === 'dot'
   const showLabel = mode === 'all' || mode === 'label'
 
+  // ── Dream race: objectif ultime ──────────────────────────────────────
+  if (race.isDream) {
+    return (
+      <motion.g
+        ref={groupRef}
+        className="milestone-g"
+        style={{ x, y, cursor: 'pointer' }}
+        onClick={onClick}
+        role="button"
+        aria-label={`${race.name} — le rêve de Dom`}
+        whileHover={{ scale: 1.08 }}
+        initial={false}
+        transition={{ duration: 0 }}
+      >
+        {showDot && (
+          <>
+            {/* Outer slow pulse ring */}
+            <motion.circle r={28} fill="transparent" stroke="#FFD700" strokeWidth={1}
+              opacity={0.2}
+              animate={{ scale: [1, 1.9, 1], opacity: [0.2, 0, 0.2] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }} />
+
+            {/* Mid pulse ring */}
+            <motion.circle r={19} fill="transparent" stroke="#FFD700" strokeWidth={1.5}
+              opacity={0.45}
+              animate={{ scale: [1, 1.55, 1], opacity: [0.45, 0.05, 0.45] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1.1 }} />
+
+            {/* Active boost ring */}
+            {state === 'active' && (
+              <motion.circle r={14} fill="transparent" stroke="#FFD700" strokeWidth={2}
+                opacity={0.7}
+                animate={{ scale: [1, 1.35, 1], opacity: [0.7, 0.2, 0.7] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }} />
+            )}
+
+            {/* Hit area */}
+            <circle r={14} fill="transparent" />
+
+            {/* Glow halo */}
+            <circle r={13} fill="white" filter="url(#dreamGlow)" />
+
+            {/* Golden orb */}
+            <circle r={11} fill={state === 'completed' ? '#FFD700' : '#FFB300'} />
+
+            {/* Rotating inner star */}
+            <motion.polygon
+              points={DREAM_STAR_POINTS}
+              fill="white"
+              opacity={0.9}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
+            />
+          </>
+        )}
+
+        {showLabel && (
+          <g>
+            {/* Connector going upward from dot to label */}
+            <line x1={0} y1={-12} x2={0} y2={-42}
+              stroke="#FFD700" strokeWidth={1} opacity={0.7} />
+
+            {/* Subtitle — topmost */}
+            <text y={line2 ? -44 : -36} textAnchor={textAnchor}
+              fill="#B8860B" fontSize={8} fontStyle="italic"
+              fontFamily="var(--font-primary)">
+              — le rêve de Dom —
+            </text>
+
+            {/* Race name — above the dot */}
+            {line2 ? (
+              <>
+                <text y={-30} textAnchor={textAnchor}
+                  fill="var(--color-navy)" fontSize={10} fontWeight="800"
+                  fontFamily="var(--font-primary)"
+                  style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  {line1}
+                </text>
+                <text y={-18} textAnchor={textAnchor}
+                  fill="var(--color-navy)" fontSize={10} fontWeight="800"
+                  fontFamily="var(--font-primary)"
+                  style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                  {line2}
+                </text>
+              </>
+            ) : (
+              <text y={-24} textAnchor={textAnchor}
+                fill="var(--color-navy)" fontSize={10} fontWeight="800"
+                fontFamily="var(--font-primary)"
+                style={{ textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                {line1}
+              </text>
+            )}
+
+            {/* Countdown below the dot when active */}
+            {state === 'active' && (
+              <text y={26} textAnchor={textAnchor}
+                fill="var(--color-navy)" fontSize={9} fontWeight="800"
+                fontFamily="var(--font-primary)"
+                style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Plus que {(race.cumulativeKm - currentKm).toLocaleString('fr-FR')} km !
+              </text>
+            )}
+          </g>
+        )}
+      </motion.g>
+    )
+  }
+
+  // ── Regular race markers ─────────────────────────────────────────────
   return (
     <motion.g
       ref={groupRef}

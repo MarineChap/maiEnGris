@@ -2344,5 +2344,25 @@
     "avgHeartRate": null,
     "startTime": null,
     "elevationSamples": null
+  },
+  "2025-10-17": {
+    "date": "2025-10-17",
+    "name": "La Diagonale des Fous",
+    "officialDistanceKm": 166,
+    "officialElevGain_m": 9570,
+    "url": "https://www.grandraid-reunion.com/",
+    "isDream": true,
+    "anecdote": "Dom a rêvé de la Diagonale des Fous. 166 km à travers l'île de la Réunion, du sud au nord, du littoral jusqu'aux sommets volcaniques. Une course légendaire, pour les fous du trail.\n\n**Il n'a jamais pu la courir.**",
+    "photos": [],
+    "gpxFile": null,
+    "gpxPath": null,
+    "tracePartial": null,
+    "distanceKm": null,
+    "duration": null,
+    "durationSec": null,
+    "elevGain_m": null,
+    "avgHeartRate": null,
+    "startTime": null,
+    "elevationSamples": null
   }
 }

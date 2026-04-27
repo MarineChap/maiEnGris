@@ -264,6 +264,155 @@
 }
 .modal-race-link:hover { opacity: 0.72; }
 
+/* ── Dream race modal ─────────────────────────────────────────────────── */
+
+.modal-backdrop--dream {
+  background: rgba(8, 12, 30, 0.88);
+}
+
+.modal-card--dream {
+  overflow: visible;
+}
+
+.modal-header--dream {
+  background: linear-gradient(135deg, #0d1622 0%, #1a1030 100%);
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+}
+
+.modal-dream-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #FFD700;
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.modal-header__title--dream {
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.modal-dream-subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 215, 0, 0.65);
+  letter-spacing: 0.04em;
+}
+
+.modal-close--dream {
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+}
+.modal-close--dream:hover { filter: brightness(1.2); }
+
+/* Dreamscape section */
+.modal-dream-landscape {
+  position: relative;
+  background: linear-gradient(160deg, #070f1f 0%, #10182e 45%, #1a1008 100%);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-dream-landscape__stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.modal-dream-star {
+  position: absolute;
+  color: #FFD700;
+  font-size: 0.7rem;
+  opacity: 0;
+  animation: dreamStarFade 4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.55s);
+}
+
+.modal-dream-star:nth-child(1)  { top: 18%; left: 8%; }
+.modal-dream-star:nth-child(2)  { top: 30%; left: 20%; font-size: 0.45rem; }
+.modal-dream-star:nth-child(3)  { top: 12%; left: 40%; }
+.modal-dream-star:nth-child(4)  { top: 55%; left: 14%; font-size: 0.5rem; }
+.modal-dream-star:nth-child(5)  { top: 22%; left: 68%; }
+.modal-dream-star:nth-child(6)  { top: 48%; left: 78%; font-size: 0.45rem; }
+.modal-dream-star:nth-child(7)  { top: 70%; left: 55%; }
+.modal-dream-star:nth-child(8)  { top: 15%; left: 88%; font-size: 0.5rem; }
+
+@keyframes dreamStarFade {
+  0%, 100% { opacity: 0; transform: scale(0.7); }
+  50%       { opacity: 0.7; transform: scale(1); }
+}
+
+.modal-dream-landscape__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-dream-landscape__distance {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+}
+
+.modal-dream-landscape__detail {
+  font-size: 0.8rem;
+  color: rgba(255, 215, 0, 0.7);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.modal-dream-landscape__info {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.38);
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+/* Dream body */
+.modal-body--dream {
+  background: #fdf9f2;
+}
+
+.modal-dream-anecdote {
+  font-size: 0.97rem;
+  line-height: 1.85;
+  color: #2a2010;
+  font-style: italic;
+}
+
+.modal-dream-anecdote p {
+  margin: 0 0 0.9em;
+}
+.modal-dream-anecdote p:last-child {
+  margin-bottom: 0;
+}
+
+.modal-dream-anecdote strong {
+  font-style: normal;
+  font-weight: 800;
+  color: #7a3a00;
+}
+
+.modal-race-link--dream {
+  color: #B8860B;
+  border-bottom-color: #B8860B;
+}
+
 @media (max-width: 600px) {
   .modal-backdrop {
     padding: 16px 0;

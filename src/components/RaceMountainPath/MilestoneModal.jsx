@@ -20,6 +20,17 @@ const cardVariants = {
   exit: { opacity: 0, y: 40, transition: { duration: 0.18 } },
 }
 
+const dreamCardVariants = {
+  hidden: { opacity: 0, scale: 0.92, y: 40 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { type: 'spring', damping: 20, stiffness: 220, delay: 0.08 },
+  },
+  exit: { opacity: 0, scale: 0.95, y: 30, transition: { duration: 0.22 } },
+}
+
 function formatDate(dateStr) {
   const d = new Date(dateStr + 'T00:00:00')
   return d.toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })
@@ -114,6 +125,90 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [prevRace, nextRace, onNavigate, onClose])
 
+  // ── Dream race modal ──────────────────────────────────────────────────
+  if (race.isDream) {
+    return createPortal(
+      <motion.div
+        className="modal-backdrop modal-backdrop--dream"
+        variants={backdropVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        onClick={onClose}
+      >
+        <div className="modal-nav-row" onClick={(e) => e.stopPropagation()}>
+          <button
+            className="modal-nav-btn"
+            onClick={() => prevRace && onNavigate(prevRace)}
+            disabled={!prevRace}
+            aria-label="Course précédente"
+          >
+            ‹
+          </button>
+
+          <motion.div
+            className="modal-card modal-card--dream"
+            variants={dreamCardVariants}
+            onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div className="modal-header modal-header--dream">
+              <div className="modal-header__info">
+                <div className="modal-dream-badge">✦ l'objectif ultime ✦</div>
+                <h2 className="modal-header__title modal-header__title--dream">{race.name}</h2>
+                <div className="modal-dream-subtitle">
+                  {race.distance_km} km · +{race.denivele_m?.toLocaleString('fr-FR')} m D+ · Île de la Réunion
+                </div>
+              </div>
+              <button className="modal-close modal-close--dream" onClick={onClose} aria-label="Fermer">✕</button>
+            </div>
+
+            <div className="modal-dream-landscape">
+              <div className="modal-dream-landscape__stars" aria-hidden="true">
+                {['✦','✧','✦','✧','✦','✧','✦','✧'].map((s, i) => (
+                  <span key={i} className="modal-dream-star" style={{ '--i': i }}>{s}</span>
+                ))}
+              </div>
+              <div className="modal-dream-landscape__content">
+                <div className="modal-dream-landscape__distance">166 km</div>
+                <div className="modal-dream-landscape__detail">9 570 m D+ · Île de la Réunion · Océan Indien</div>
+                <div className="modal-dream-landscape__info">Du sud au nord · ~4 500 coureurs · 40 % de finishers</div>
+              </div>
+            </div>
+
+            <div className="modal-body modal-body--dream">
+              <div className="modal-anecdote modal-dream-anecdote">
+                {race.anecdote ? renderMarkdown(race.anecdote) : null}
+              </div>
+              {race.url && (
+                <a
+                  href={race.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="modal-race-link modal-race-link--dream"
+                >
+                  Site officiel de la course →
+                </a>
+              )}
+            </div>
+          </motion.div>
+
+          <button
+            className="modal-nav-btn"
+            onClick={() => nextRace && onNavigate(nextRace)}
+            disabled={!nextRace}
+            aria-label="Course suivante"
+          >
+            ›
+          </button>
+        </div>
+      </motion.div>,
+      document.body
+    )
+  }
+
+  // ── Regular race modal ────────────────────────────────────────────────
   return createPortal(
     <motion.div
       className="modal-backdrop"

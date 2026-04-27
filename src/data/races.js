@@ -15,6 +15,7 @@ export const RACES = rawRaces.map((r, i) => {
     denivele_m: r.officialElevGain_m,
     cumulativeKm: cumul,
     url: r.url || null,
+    isDream: r.isDream ?? false,
     anecdote: r.anecdote,
     photos: r.photos ?? [],
     suunto: r.gpxPath ? {
