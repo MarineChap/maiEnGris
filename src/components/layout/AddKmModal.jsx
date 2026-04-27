@@ -6,6 +6,7 @@ import { DONATION_URL } from '../../data/races'
 import '../../styles/AddKmModal.css'
 
 export default function AddKmModal({ onClose, onSuccess }) {
+  const [step, setStep] = useState('choice') // 'choice' | 'form'
   const [km, setKm] = useState('')
   const [prenom, setPrenom] = useState('')
   const [message, setMessage] = useState('')
@@ -72,18 +73,54 @@ export default function AddKmModal({ onClose, onSuccess }) {
                 compteur collectif. Vous contribuez à honorer la mémoire de
                 Dominique.
               </p>
-              <p className="addkm-don-nudge addkm-don-nudge--success">
-                Et si vous faisiez aussi un don à la recherche&nbsp;?{' '}
-                <a href={DONATION_URL} target="_blank" rel="noopener noreferrer" className="addkm-don-link">
-                  Faire un don →
-                </a>
-              </p>
               <button className="addkm-btn" onClick={onClose}>
                 Fermer
               </button>
             </motion.div>
+          ) : step === 'choice' ? (
+            <motion.div
+              key="choice"
+              className="addkm-choice"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="addkm-header">
+                <div className="addkm-header__icon">🏔️</div>
+                <h2 className="addkm-header__title">Ajouter mes kilomètres</h2>
+                <p className="addkm-header__sub">
+                  Avant de continuer, une question&nbsp;:
+                </p>
+              </div>
+              <div className="addkm-choice__buttons">
+                <a
+                  className="addkm-choice-btn addkm-choice-btn--donate"
+                  href={DONATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="addkm-choice-btn__icon">❤️</span>
+                  <span className="addkm-choice-btn__label">Je n'ai pas encore fait de don</span>
+                  <span className="addkm-choice-btn__sub">Soutenir la recherche →</span>
+                </a>
+                <button
+                  className="addkm-choice-btn addkm-choice-btn--already"
+                  onClick={() => setStep('form')}
+                >
+                  <span className="addkm-choice-btn__icon">✓</span>
+                  <span className="addkm-choice-btn__label">J'ai déjà fait un don</span>
+                  <span className="addkm-choice-btn__sub">Ajouter mes kilomètres →</span>
+                </button>
+              </div>
+            </motion.div>
           ) : (
-            <motion.div key="form" initial={{ opacity: 1 }}>
+            <motion.div
+              key="form"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2 }}
+            >
               <div className="addkm-header">
                 <div className="addkm-header__icon">🏔️</div>
                 <h2 className="addkm-header__title">Ajouter mes kilomètres</h2>
@@ -146,13 +183,6 @@ export default function AddKmModal({ onClose, onSuccess }) {
                 </div>
 
                 {error && <p className="addkm-error" role="alert">{error}</p>}
-
-                <p className="addkm-don-nudge">
-                  Chaque geste compte — pensez aussi au don pour soutenir la recherche.{' '}
-                  <a href={DONATION_URL} target="_blank" rel="noopener noreferrer" className="addkm-don-link">
-                    Faire un don →
-                  </a>
-                </p>
 
                 <button className="addkm-btn" type="submit" disabled={loading}>
                   {loading ? 'Envoi…' : '+ Ajouter ces km'}
