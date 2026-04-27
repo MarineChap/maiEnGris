@@ -82,6 +82,44 @@ function renderMarkdown(text) {
   return elements
 }
 
+function LargeGpxTrace({ samples, distanceKm, partial }) {
+  if (!samples || samples.length < 2) return null
+
+  const W = 100, H = 42, PAD = 4
+
+  const pts = samples.map((v, i) => ({
+    x: (i / (samples.length - 1)) * W,
+    y: H - v * (H - PAD),
+  }))
+
+  const areaD =
+    `M${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}` +
+    pts.slice(1).map(p => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join('') +
+    `L${W},${H}L0,${H}Z`
+
+  const lineD =
+    `M${pts[0].x.toFixed(1)},${pts[0].y.toFixed(1)}` +
+    pts.slice(1).map(p => `L${p.x.toFixed(1)},${p.y.toFixed(1)}`).join('')
+
+  return (
+    <div className="modal-gpx-large">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        className="modal-gpx-large__svg"
+      >
+        <path d={areaD} fill="var(--color-sky)" opacity={partial ? 0.25 : 0.35} />
+        <path d={lineD} fill="none" stroke="var(--color-sky)" strokeWidth="0.8" opacity={partial ? 0.55 : 0.85} />
+      </svg>
+      <div className="modal-gpx-large__labels">
+        <span>Départ</span>
+        {distanceKm && <span>{distanceKm} km</span>}
+      </div>
+    </div>
+  )
+}
+
 function formatStartTime(isoStr) {
   if (!isoStr) return null
   const d = new Date(isoStr)
@@ -313,19 +351,21 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
               </div>
             )}
           </div>
-        ) : (
-          <div className="modal-photo-placeholder">
-            <span className="modal-photo-placeholder__icon">⛰</span>
-            <span className="modal-photo-placeholder__text">Souvenir à venir</span>
-          </div>
-        )}
+        ) : race.suunto?.elevationSamples ? (
+          <LargeGpxTrace
+            samples={race.suunto.elevationSamples}
+            distanceKm={race.suunto.distanceKm ?? race.distance_km}
+            partial={race.suunto.tracePartial}
+          />
+        ) : null}
 
+        {(race.anecdote || race.url) && (
         <div className="modal-body">
-          <div className={`modal-anecdote${!race.anecdote ? ' modal-anecdote--placeholder' : ''}`}>
-            {race.anecdote
-              ? renderMarkdown(race.anecdote)
-              : "L'anecdote de cette course sera bientôt ajoutée."}
+          {race.anecdote && (
+          <div className="modal-anecdote">
+            {renderMarkdown(race.anecdote)}
           </div>
+          )}
           {race.url && (
             <a
               href={race.url}
@@ -337,6 +377,7 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
             </a>
           )}
         </div>
+        )}
       </motion.div>
 
         <button
