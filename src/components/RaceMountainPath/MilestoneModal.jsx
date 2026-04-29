@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import GpxTrace from './GpxTrace'
 import '../../styles/MilestoneModal.css'
+
+const RaceMap = lazy(() => import('./RaceMap'))
 
 const backdropVariants = {
   hidden: { opacity: 0 },
@@ -351,7 +353,14 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
               </div>
             )}
           </div>
-        ) : race.suunto?.elevationSamples ? (
+        ) : null}
+        {photos.length === 0 && race.polyline ? (
+          <div className="modal-race-map-wrap">
+            <Suspense fallback={<div className="modal-race-map-wrap" />}>
+              <RaceMap polyline={race.polyline} />
+            </Suspense>
+          </div>
+        ) : photos.length === 0 && race.suunto?.elevationSamples ? (
           <LargeGpxTrace
             samples={race.suunto.elevationSamples}
             distanceKm={race.suunto.distanceKm ?? race.distance_km}
@@ -359,7 +368,7 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
           />
         ) : null}
 
-        {(race.anecdote || race.url) && (
+        {(race.anecdote || race.url || race.photoCredit) && (
         <div className="modal-body">
           {race.anecdote && (
           <div className="modal-anecdote">
@@ -375,6 +384,19 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
             >
               Site officiel de la course →
             </a>
+          )}
+          {race.photoCredit && (
+            <p className="modal-photo-credit">
+              Nous n'avions pas de photo de cette édition — photo trouvée sur internet ·{' '}
+              <a
+                href={race.photoCreditUrl ?? `https://${race.photoCredit}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="modal-photo-credit__link"
+              >
+                © {race.photoCredit}
+              </a>
+            </p>
           )}
         </div>
         )}

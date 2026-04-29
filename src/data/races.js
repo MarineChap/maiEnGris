@@ -18,6 +18,9 @@ export const RACES = rawRaces.map((r, i) => {
     isDream: r.isDream ?? false,
     anecdote: r.anecdote,
     photos: r.photos ?? [],
+    polyline: r.polyline ?? null,
+    photoCredit: r.photoCredit ?? null,
+    photoCreditUrl: r.photoCreditUrl ?? null,
     suunto: r.gpxPath ? {
       gpxFile:          r.gpxFile,
       gpxPath:          r.gpxPath,
