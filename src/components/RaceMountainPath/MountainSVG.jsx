@@ -5,7 +5,7 @@ import MilestoneMarker from './MilestoneMarker'
 // The mountain path — ascends from bottom-left to the summit (top-right)
 const MOUNTAIN_PATH_D =
   'M 0,450 C 60,440 100,380 160,320 C 210,270 240,300 290,280 ' +
-  'C 340,260 360,200 420,180 C 480,160 500,230 560,210 ' +
+  'C 340,260 360,200 420,180 C 465,165 510,195 560,195 ' +
   'C 610,195 640,140 700,120 C 750,105 760,150 800,130 ' +
   'C 830,115 845,90 880,70 C 910,55 960,45 1000,40'
 
