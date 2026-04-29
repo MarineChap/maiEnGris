@@ -45,12 +45,17 @@
   width: fit-content;
   max-width: min(820px, calc(100vw - 120px));
   min-width: 320px;
-  overflow: hidden;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  overflow-x: hidden;
   box-shadow: var(--shadow-elevated);
 }
 
 .modal-header {
   background: var(--color-navy);
+  position: sticky;
+  top: 0;
+  z-index: 10;
   color: var(--color-white);
   padding: 18px 24px;
   display: flex;
@@ -433,6 +438,111 @@
   color: #B8860B;
   border-bottom-color: #B8860B;
 }
+
+/* ── Training section ─────────────────────────────────────────────────── */
+
+.training-section {
+  border-top: 1px solid rgba(29, 43, 82, 0.08);
+}
+
+.training-section__toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: rgba(160, 221, 243, 0.1);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  text-align: left;
+  transition: background 0.15s;
+}
+.training-section__toggle:hover { background: rgba(160, 221, 243, 0.22); }
+
+.training-section__toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.training-section__count {
+  background: var(--color-sky);
+  color: var(--color-navy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 20px;
+  line-height: 1.6;
+}
+
+.training-section__chevron {
+  font-size: 0.65rem;
+  opacity: 0.5;
+}
+
+.training-card {
+  padding: 0 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.training-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--color-navy);
+  opacity: 0.7;
+}
+
+.training-card__days {
+  font-weight: 700;
+  color: var(--color-sky-dark);
+  opacity: 1;
+}
+
+.training-card__dot { opacity: 0.4; }
+
+.training-card__desc {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-navy);
+  opacity: 0.75;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.training-card__map-wrap {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  height: 200px;
+}
+
+.training-card__map {
+  height: 100%;
+  width: 100%;
+}
+
+.training-card__next {
+  align-self: stretch;
+  background: var(--color-navy);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-white);
+  cursor: pointer;
+  padding: 12px 16px;
+  transition: opacity 0.15s;
+  text-align: center;
+}
+.training-card__next:hover { opacity: 0.8; }
 
 @media (max-width: 600px) {
   .modal-backdrop {

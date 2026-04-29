@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import GpxTrace from './GpxTrace'
+import TrainingSection from './TrainingSection'
 import '../../styles/MilestoneModal.css'
 
 const backdropVariants = {
@@ -378,6 +379,7 @@ export default function MilestoneModal({ race, races, onNavigate, onClose }) {
           )}
         </div>
         )}
+        <TrainingSection raceKey={race.date} />
       </motion.div>
 
         <button
