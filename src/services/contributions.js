@@ -34,6 +34,27 @@ export async function getAlvarumAmount() {
   return data?.value ?? null
 }
 
+/** Retourne le nombre total de contributions */
+export async function getTotalContributionsCount() {
+  if (!supabase) return 0
+  const { count, error } = await supabase
+    .from('contributions')
+    .select('*', { count: 'exact', head: true })
+  if (error) throw error
+  return count ?? 0
+}
+
+/** Retourne toutes les contributions triées par date croissante (pour la page complète) */
+export async function getAllContributions() {
+  if (!supabase) return []
+  const { data, error } = await supabase
+    .from('contributions')
+    .select('id, created_at, prenom, km, message')
+    .order('created_at', { ascending: true })
+  if (error) throw error
+  return data ?? []
+}
+
 /** Insère une nouvelle contribution */
 export async function addContribution({ prenom, km, message }) {
   if (!supabase) throw new Error('Supabase non configuré')

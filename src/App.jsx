@@ -5,28 +5,33 @@ import HeroSection from './components/layout/HeroSection'
 import SiteFooter from './components/layout/SiteFooter'
 import RaceMountainPath from './components/RaceMountainPath'
 import AddKmModal from './components/layout/AddKmModal'
+import AllKmsPage from './components/AllKmsPage'
 import { RACES, CURRENT_KM, FINAL_PEAK_KM, DONATION_URL } from './data/races'
-import { getAlvarumAmount, getTotalKm, getRecentContributions } from './services/contributions'
+import { getAlvarumAmount, getTotalKm, getRecentContributions, getTotalContributionsCount } from './services/contributions'
 import { supabase } from './lib/supabase'
 
 const POLL_MS = 30_000
 
 export default function App() {
   const [showAddKm, setShowAddKm] = useState(false)
+  const [showAllKms, setShowAllKms] = useState(false)
   const [totalDonations, setTotalDonations] = useState(null)
   const [dbKm, setDbKm] = useState(0)
   const [contributions, setContributions] = useState([])
+  const [contributionsCount, setContributionsCount] = useState(0)
 
   const fetchAll = useCallback(async () => {
     try {
-      const [total, recent, amount] = await Promise.all([
+      const [total, recent, amount, count] = await Promise.all([
         getTotalKm(),
         getRecentContributions(15),
         getAlvarumAmount(),
+        getTotalContributionsCount(),
       ])
       setDbKm(total)
       setContributions(recent)
       if (amount) setTotalDonations(amount)
+      setContributionsCount(count)
     } catch (err) {
       console.error('[mai-en-gris] Erreur chargement:', err)
     }
@@ -61,6 +66,7 @@ export default function App() {
       km: contribution.km,
       message: contribution.message,
     }, ...prev].slice(0, 15))
+    setContributionsCount(prev => prev + 1)
   }
 
   return (
@@ -73,10 +79,12 @@ export default function App() {
           currentKm={CURRENT_KM}
           dbKm={dbKm}
           contributions={contributions}
+          contributionsCount={contributionsCount}
           finalPeakKm={FINAL_PEAK_KM}
           totalDonations={totalDonations}
           onDonate={DONATION_URL}
           onAddKm={() => setShowAddKm(true)}
+          onSeeAll={() => setShowAllKms(true)}
         />
       </main>
       <SiteFooter />
@@ -87,6 +95,13 @@ export default function App() {
             key="add-km-modal"
             onClose={() => setShowAddKm(false)}
             onSuccess={handleSuccess}
+          />
+        )}
+        {showAllKms && (
+          <AllKmsPage
+            key="all-kms-page"
+            races={RACES}
+            onClose={() => setShowAllKms(false)}
           />
         )}
       </AnimatePresence>

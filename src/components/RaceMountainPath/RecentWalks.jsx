@@ -16,10 +16,12 @@ function relativeTime(dateStr) {
   return new Date(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })
 }
 
-export default function RecentWalks({ contributions }) {
+export default function RecentWalks({ contributions, totalCount, onSeeAll }) {
   const [open, setOpen] = useState(false)
 
   if (!contributions || contributions.length === 0) return null
+
+  const displayCount = totalCount ?? contributions.length
 
   return (
     <div className="recent-walks">
@@ -32,37 +34,47 @@ export default function RecentWalks({ contributions }) {
         <span className="recent-walks__icon">🏃</span>
         <span className="recent-walks__label">
           Balades récentes
-          <span className="recent-walks__count">{contributions.length}</span>
+          <span className="recent-walks__count">{displayCount}</span>
         </span>
         <ChevronDown className="recent-walks__chevron" size={15} />
       </button>
 
       <AnimatePresence>
         {open && (
-          <motion.ul
-            className="recent-walks__list"
+          <motion.div
+            className="recent-walks__dropdown"
             initial={{ opacity: 0, y: -6, scaleY: 0.88 }}
             animate={{ opacity: 1, y: 0, scaleY: 1 }}
             exit={{ opacity: 0, y: -6, scaleY: 0.88 }}
             transition={{ duration: 0.16, ease: 'easeOut' }}
             style={{ originY: 0 }}
-            role="list"
           >
-            {contributions.map((c) => (
-              <li key={c.id} className={`recent-walks__item${c.message ? ' has-message' : ''}`}>
-                <span className="recent-walks__name">
-                  {c.prenom || 'Anonyme'}
-                </span>
-                <span className="recent-walks__km">+{c.km}&nbsp;km</span>
-                <span className="recent-walks__time">
-                  {relativeTime(c.created_at)}
-                </span>
-                {c.message && (
-                  <p className="recent-walks__message">{c.message}</p>
-                )}
-              </li>
-            ))}
-          </motion.ul>
+            <ul className="recent-walks__list" role="list">
+              {contributions.map((c) => (
+                <li key={c.id} className={`recent-walks__item${c.message ? ' has-message' : ''}`}>
+                  <span className="recent-walks__name">
+                    {c.prenom || 'Anonyme'}
+                  </span>
+                  <span className="recent-walks__km">+{c.km}&nbsp;km</span>
+                  <span className="recent-walks__time">
+                    {relativeTime(c.created_at)}
+                  </span>
+                  {c.message && (
+                    <p className="recent-walks__message">{c.message}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            <div className="recent-walks__footer">
+              <button
+                className="recent-walks__see-all"
+                onClick={() => { setOpen(false); onSeeAll?.() }}
+              >
+                Voir les {displayCount} messages →
+              </button>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </div>

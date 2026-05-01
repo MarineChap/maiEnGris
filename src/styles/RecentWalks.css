@@ -62,19 +62,50 @@
   transform: rotate(180deg);
 }
 
-/* ─── Dropdown list ───────────────────────────────────────── */
-.recent-walks__list {
+/* ─── Dropdown container ──────────────────────────────────── */
+.recent-walks__dropdown {
   margin: 5px 0 0;
-  padding: 6px 0;
   background: rgba(22, 33, 68, 0.96);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(160, 221, 243, 0.15);
   border-radius: var(--radius-md);
+  overflow: hidden;
+  transform-origin: top center;
+}
+
+/* ─── Dropdown list ───────────────────────────────────────── */
+.recent-walks__list {
+  padding: 6px 0;
   list-style: none;
   max-height: 280px;
   overflow-y: auto;
-  transform-origin: top center;
+}
+
+/* ─── Footer with "Voir plus" ─────────────────────────────── */
+.recent-walks__footer {
+  padding: 7px 8px;
+  border-top: 1px solid rgba(160, 221, 243, 0.1);
+}
+
+.recent-walks__see-all {
+  display: block;
+  width: 100%;
+  padding: 6px 10px;
+  background: rgba(160, 221, 243, 0.08);
+  border: 1px solid rgba(160, 221, 243, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--color-sky);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.recent-walks__see-all:hover {
+  background: rgba(160, 221, 243, 0.16);
+  border-color: rgba(160, 221, 243, 0.4);
 }
 
 /* Custom scrollbar */

@@ -196,13 +196,12 @@ export default function MountainSVG({
           transition={{ duration: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
         />
 
-        {/* Runner indicator (the current location of Dominique) */}
+        {/* Current position indicator */}
         <motion.g
           animate={{ x: runnerPos.x, y: runnerPos.y }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
         >
           <circle r={10} fill="var(--color-white)" filter="url(#markerGlow)" />
-          <text x="0" y="4" fontSize={14} textAnchor="middle" transform="scale(-1,1)">🏃‍♂️</text>
         </motion.g>
 
         {/* Summit altitude haze overlay */}

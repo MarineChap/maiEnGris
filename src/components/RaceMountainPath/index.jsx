@@ -7,7 +7,7 @@ import ConfettiEffect from './ConfettiEffect'
 import RecentWalks from './RecentWalks'
 import '../../styles/RaceMountainPath.css'
 
-export default function RaceMountainPath({ races, currentKm: baseKm, dbKm, contributions, finalPeakKm, totalDonations, onDonate, onAddKm }) {
+export default function RaceMountainPath({ races, currentKm: baseKm, dbKm, contributions, contributionsCount, finalPeakKm, totalDonations, onDonate, onAddKm, onSeeAll }) {
   const [selectedRace, setSelectedRace] = useState(null)
   const [celebratingId, setCelebratingId] = useState(null)
   const prevKmRef = useRef(baseKm)
@@ -58,7 +58,7 @@ export default function RaceMountainPath({ races, currentKm: baseKm, dbKm, contr
         />
         {celebratingId && <ConfettiEffect key={celebratingId} />}
 
-        <RecentWalks contributions={contributions} />
+        <RecentWalks contributions={contributions} totalCount={contributionsCount} onSeeAll={onSeeAll} />
       </div>
 
       <AnimatePresence>
