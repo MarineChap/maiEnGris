@@ -289,9 +289,9 @@ export default function MountainSVG({
                 />
               )}
 
-              {/* Year label centered on the group */}
+              {/* Year label anchored to the first race of the group */}
               <text
-                x={g.xCenter}
+                x={g.xMin}
                 y={LABEL_Y}
                 textAnchor="middle"
                 fontSize="8.5"
@@ -301,7 +301,7 @@ export default function MountainSVG({
                 fill={textFill}
                 opacity={textOpacity}
                 letterSpacing="0.04em"
-                transform={`rotate(-30, ${g.xCenter}, ${LABEL_Y})`}
+                transform={`rotate(-55, ${g.xMin}, ${LABEL_Y})`}
               >
                 {g.year}
               </text>
