@@ -161,32 +161,43 @@
 
 .akp-entry__row {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
 }
 
 .akp-entry__name {
-  flex: 1;
   color: var(--color-white);
   font-weight: 500;
   font-size: 0.88rem;
-  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.akp-entry__stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .akp-entry__km {
   color: var(--color-sky);
   font-weight: 700;
   font-size: 0.88rem;
-  white-space: nowrap;
+}
+
+.akp-entry__denivele {
+  color: rgba(160, 221, 243, 0.65);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .akp-entry__time {
   color: rgba(255, 255, 255, 0.32);
   font-size: 0.76rem;
   white-space: nowrap;
+  margin-left: auto;
 }
 
 .akp-entry__message {
@@ -201,6 +212,25 @@
   line-height: 1.5;
   word-break: break-word;
 }
+
+/* ─── Entry photo ─────────────────────────────────────────── */
+.akp-entry__photo-link {
+  display: block;
+  margin-top: 8px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  max-width: 220px;
+}
+.akp-entry__photo {
+  display: block;
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(160, 221, 243, 0.15);
+  transition: opacity 0.15s;
+}
+.akp-entry__photo-link:hover .akp-entry__photo { opacity: 0.85; }
 
 /* ─── Race milestone ──────────────────────────────────────── */
 .akp-milestone {

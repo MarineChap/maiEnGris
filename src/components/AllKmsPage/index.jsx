@@ -114,11 +114,31 @@ export default function AllKmsPage({ races, onClose }) {
                       <div className="akp-entry__body">
                         <div className="akp-entry__row">
                           <span className="akp-entry__name">{c.prenom || 'Anonyme'}</span>
-                          <span className="akp-entry__km">+{c.km}&thinsp;km</span>
+                          <span className="akp-entry__stats">
+                            <span className="akp-entry__km">+{c.km}&thinsp;km</span>
+                            {!!c.denivele && (
+                              <span className="akp-entry__denivele">↑{c.denivele.toLocaleString('fr-FR')}&thinsp;m</span>
+                            )}
+                          </span>
                           <span className="akp-entry__time">{relativeTime(c.created_at)}</span>
                         </div>
                         {c.message && (
                           <p className="akp-entry__message">{c.message}</p>
+                        )}
+                        {!!c.photo_url && (
+                          <a
+                            className="akp-entry__photo-link"
+                            href={c.photo_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              className="akp-entry__photo"
+                              src={c.photo_url}
+                              alt={`Photo de ${c.prenom || 'Anonyme'}`}
+                              loading="lazy"
+                            />
+                          </a>
                         )}
                       </div>
                     </motion.div>

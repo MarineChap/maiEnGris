@@ -4553,7 +4553,12 @@
     "officialElevGain_m": 2600,
     "url": "https://ardeche-trail-la-voie-romaine.com/",
     "anecdote": null,
-    "photos": [],
+    "photos": [
+      "/photos/ardechois_2017_1.jpeg",
+      "/photos/ardechois_2017_2.jpeg",
+      "/photos/ardechois_2017_3.jpeg",
+      "/photos/ardechois_2017_4.jpeg"
+    ],
     "gpxFile": "2017-04-30_06.04.48-trail_running.gpx",
     "gpxPath": "/gpx/2017-04-30-trail_running.gpx",
     "tracePartial": false,
@@ -8962,7 +8967,8 @@
     "url": "https://ardeche-trail-la-voie-romaine.com/",
     "anecdote": null,
     "photos": [
-      "/photos/trail_ardechois_2008.jpeg"
+      "/photos/trail_ardechois_2008.jpeg",
+      "/photos/c4cbca3f-cf07-4ebb-a77b-f428464e9c63.jpeg"
     ],
     "gpxFile": null,
     "gpxPath": null,
@@ -10411,7 +10417,7 @@
     "url": "http://www.trail-gerbier.fr/",
     "anecdote": null,
     "photos": [
-      "/photos/gerbier_2015.jpg"
+      "/photos/39f46d32-1100-4060-aa75-e02d5adf61b4.jpeg"
     ],
     "gpxFile": null,
     "gpxPath": null,

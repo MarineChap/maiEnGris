@@ -62,6 +62,21 @@ export default function RecentWalks({ contributions, totalCount, onSeeAll }) {
                   {c.message && (
                     <p className="recent-walks__message">{c.message}</p>
                   )}
+                  {!!c.photo_url && (
+                    <a
+                      className="recent-walks__photo-link"
+                      href={c.photo_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        className="recent-walks__photo"
+                        src={c.photo_url}
+                        alt={`Photo de ${c.prenom || 'Anonyme'}`}
+                        loading="lazy"
+                      />
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>

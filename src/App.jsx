@@ -5,6 +5,7 @@ import HeroSection from './components/layout/HeroSection'
 import SiteFooter from './components/layout/SiteFooter'
 import RaceMountainPath from './components/RaceMountainPath'
 import AddKmModal from './components/layout/AddKmModal'
+import UpdateBanner from './components/layout/UpdateBanner'
 import AllKmsPage from './components/AllKmsPage'
 import { RACES, CURRENT_KM, FINAL_PEAK_KM, DONATION_URL } from './data/races'
 import { getAlvarumAmount, getTotalKm, getRecentContributions, getTotalContributionsCount } from './services/contributions'
@@ -72,6 +73,7 @@ export default function App() {
   return (
     <>
       <SiteHeader />
+      <UpdateBanner />
       <main>
         <HeroSection />
         <RaceMountainPath

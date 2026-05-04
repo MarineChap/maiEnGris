@@ -8,12 +8,33 @@ import '../../styles/AddKmModal.css'
 export default function AddKmModal({ onClose, onSuccess }) {
   const [step, setStep] = useState('choice') // 'choice' | 'form'
   const [km, setKm] = useState('')
+  const [denivele, setDenivele] = useState('')
   const [prenom, setPrenom] = useState('')
   const [message, setMessage] = useState('')
+  const [photo, setPhoto] = useState(null)
+  const [photoPreview, setPhotoPreview] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [submitted, setSubmitted] = useState(false)
   const [submittedData, setSubmittedData] = useState(null)
+
+  function handlePhotoChange(e) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (file.size > 10 * 1024 * 1024) {
+      setError('La photo ne doit pas dépasser 10 Mo.')
+      return
+    }
+    setPhoto(file)
+    setPhotoPreview(URL.createObjectURL(file))
+    setError(null)
+  }
+
+  function removePhoto() {
+    setPhoto(null)
+    if (photoPreview) URL.revokeObjectURL(photoPreview)
+    setPhotoPreview(null)
+  }
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -25,7 +46,8 @@ export default function AddKmModal({ onClose, onSuccess }) {
     setLoading(true)
     setError(null)
     try {
-      const contribution = await addContribution({ prenom, km: kmNum, message })
+      const deniveleNum = parseFloat(denivele) || null
+      const contribution = await addContribution({ prenom, km: kmNum, denivele: deniveleNum, message, photo })
       setSubmittedData({ km: kmNum, prenom: prenom.trim() || null })
       setSubmitted(true)
       onSuccess?.(contribution)
@@ -131,8 +153,8 @@ export default function AddKmModal({ onClose, onSuccess }) {
 
               <form className="addkm-form" onSubmit={handleSubmit} noValidate>
                 <div className="addkm-field">
-                  <label className="addkm-label" htmlFor="addkm-km">
-                    Mes kilomètres&nbsp;<span className="addkm-required">*</span>
+                  <label className="addkm-label">
+                    Distance &amp; dénivelé&nbsp;<span className="addkm-required">*</span>
                   </label>
                   <div className="addkm-km-row">
                     <input
@@ -148,6 +170,17 @@ export default function AddKmModal({ onClose, onSuccess }) {
                       autoFocus
                     />
                     <span className="addkm-unit">km</span>
+                    <input
+                      id="addkm-denivele"
+                      className="addkm-input addkm-input--km"
+                      type="number"
+                      min="0"
+                      step="10"
+                      placeholder="ex: 500"
+                      value={denivele}
+                      onChange={(e) => setDenivele(e.target.value)}
+                    />
+                    <span className="addkm-unit">m D+</span>
                   </div>
                 </div>
 
@@ -180,6 +213,37 @@ export default function AddKmModal({ onClose, onSuccess }) {
                     onChange={(e) => setMessage(e.target.value)}
                   />
                   <span className="addkm-char-count">{message.length}/280</span>
+                </div>
+
+                <div className="addkm-field">
+                  <label className="addkm-label">
+                    Une photo&nbsp;<span className="addkm-optional">optionnel</span>
+                  </label>
+                  {photoPreview ? (
+                    <div className="addkm-photo-preview">
+                      <img src={photoPreview} alt="Aperçu" className="addkm-photo-preview__img" />
+                      <button
+                        type="button"
+                        className="addkm-photo-preview__remove"
+                        onClick={removePhoto}
+                        aria-label="Supprimer la photo"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ) : (
+                    <label className="addkm-photo-upload" htmlFor="addkm-photo">
+                      <span className="addkm-photo-upload__icon">📷</span>
+                      <span className="addkm-photo-upload__text">Choisir une photo</span>
+                      <input
+                        id="addkm-photo"
+                        type="file"
+                        accept="image/*"
+                        className="addkm-photo-upload__input"
+                        onChange={handlePhotoChange}
+                      />
+                    </label>
+                  )}
                 </div>
 
                 {error && <p className="addkm-error" role="alert">{error}</p>}

@@ -144,13 +144,29 @@
   word-break: break-word;
 }
 
+.recent-walks__photo-link {
+  grid-column: 1 / -1;
+  display: block;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  max-width: 180px;
+}
+.recent-walks__photo {
+  display: block;
+  width: 100%;
+  max-height: 130px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(160, 221, 243, 0.15);
+  transition: opacity 0.15s;
+}
+.recent-walks__photo-link:hover .recent-walks__photo { opacity: 0.85; }
+
 .recent-walks__name {
   color: var(--color-white);
   font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   min-width: 0;
+  word-break: break-word;
 }
 
 .recent-walks__km {

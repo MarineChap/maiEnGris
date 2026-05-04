@@ -92,7 +92,8 @@
 .addkm-km-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .addkm-input {
@@ -234,6 +235,69 @@
   background: #eaedf5;
   transform: scale(1.02);
 }
+
+/* ─── Photo upload ────────────────────────────────────────── */
+.addkm-photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px;
+  border: 1.5px dashed #c0c8de;
+  border-radius: var(--radius-md);
+  background: #f7f8fc;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+.addkm-photo-upload:hover {
+  border-color: var(--color-sky);
+  background: #f0f7fd;
+}
+.addkm-photo-upload__icon { font-size: 22px; line-height: 1; }
+.addkm-photo-upload__text {
+  font-size: 0.83rem;
+  color: #777;
+  font-weight: 500;
+}
+.addkm-photo-upload__input {
+  display: none;
+}
+
+.addkm-photo-preview {
+  position: relative;
+  display: inline-block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  max-height: 180px;
+}
+.addkm-photo-preview__img {
+  display: block;
+  width: 100%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+.addkm-photo-preview__remove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+.addkm-photo-preview__remove:hover { background: rgba(0,0,0,0.75); }
 
 /* ─── Success state ───────────────────────────────────────── */
 .addkm-success {
