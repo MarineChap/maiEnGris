@@ -9,11 +9,7 @@ export default function UpdateBanner() {
 
   useEffect(() => {
     const stored = localStorage.getItem('app_version')
-    if (!stored) {
-      // Première visite : on stocke silencieusement
-      localStorage.setItem('app_version', CURRENT_VERSION)
-    } else if (stored !== CURRENT_VERSION) {
-      // Utilisateur revenant avec une ancienne version
+    if (!stored || stored !== CURRENT_VERSION) {
       setVisible(true)
     }
   }, [])
