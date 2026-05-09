@@ -55,6 +55,7 @@ export default function RaceMountainPath({ races, currentKm: baseKm, dbKm, contr
           finalPeakKm={finalPeakKm}
           getMilestoneState={getMilestoneState}
           onMilestoneClick={setSelectedRace}
+          nextRace={nextRace}
         />
         {celebratingId && <ConfettiEffect key={celebratingId} />}
 

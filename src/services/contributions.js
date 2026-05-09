@@ -12,17 +12,21 @@ export async function getRecentContributions(limit = 15) {
   return data ?? []
 }
 
-/** Retourne la somme totale des km de toutes les contributions */
-export async function getTotalKm() {
-  if (!supabase) return 0
+/** Retourne le total des km ET le nombre de contributions en une seule requête */
+export async function getStats() {
+  if (!supabase) return { totalKm: 0, count: 0 }
   const { data, error } = await supabase
     .from('contributions')
     .select('km')
   if (error) throw error
-  return (data ?? []).reduce((s, r) => s + Number(r.km), 0)
+  const rows = data ?? []
+  return {
+    totalKm: rows.reduce((s, r) => s + Number(r.km), 0),
+    count: rows.length,
+  }
 }
 
-/** Retourne le montant collecté sur Alvarum (stocké dans settings) */
+/** Retourne le montant collecté sur Alvarum (appelé une seule fois au chargement) */
 export async function getAlvarumAmount() {
   if (!supabase) return null
   const { data, error } = await supabase
@@ -32,16 +36,6 @@ export async function getAlvarumAmount() {
     .single()
   if (error) { console.error('[getAlvarumAmount]', error); return null }
   return data?.value ?? null
-}
-
-/** Retourne le nombre total de contributions */
-export async function getTotalContributionsCount() {
-  if (!supabase) return 0
-  const { count, error } = await supabase
-    .from('contributions')
-    .select('*', { count: 'exact', head: true })
-  if (error) throw error
-  return count ?? 0
 }
 
 /** Retourne toutes les contributions triées par date croissante (pour la page complète) */

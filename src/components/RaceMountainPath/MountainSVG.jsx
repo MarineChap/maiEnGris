@@ -26,6 +26,7 @@ export default function MountainSVG({
   finalPeakKm,
   getMilestoneState,
   onMilestoneClick,
+  nextRace,
 }) {
   const pathRef = useRef(null)        // plain <path> for measurement
   const svgRef = useRef(null)         // SVG root for coordinate transforms
@@ -88,6 +89,17 @@ export default function MountainSVG({
     setRunnerPos({ x: runnerPt.x, y: runnerPt.y })
   }, [progress])
 
+
+  // Center scroll on the active race (mobile only)
+  useLayoutEffect(() => {
+    if (markerPositions.length === 0 || !nextRace) return
+    const container = containerRef.current
+    if (!container || container.scrollWidth <= container.clientWidth) return
+    const activePos = markerPositions.find((pos) => pos.id === nextRace.id)
+    if (!activePos) return
+    // viewBox starts at x=-5, SVG is 1035px wide → pixelX = svgX + 5
+    container.scrollLeft = activePos.x + 5 - container.clientWidth / 2
+  }, [markerPositions, nextRace])
 
   // Group marker x positions by year for the frieze
   const yearGroups = useMemo(() => {
