@@ -3,8 +3,29 @@ import '../../styles/StatsHeader.css'
 
 function parseDonationAmount(str) {
   if (!str) return null
-  const cleaned = String(str).replace(/[^\d.,]/g, '').replace(',', '.')
-  const num = parseFloat(cleaned)
+  const cleaned = String(str).replace(/[^\d.,]/g, '')
+
+  let normalized
+  if (cleaned.includes(',') && cleaned.includes('.')) {
+    const lastComma = cleaned.lastIndexOf(',')
+    const lastDot = cleaned.lastIndexOf('.')
+    if (lastComma > lastDot) {
+      // "1.234,56" → point = séparateur milliers, virgule = décimal
+      normalized = cleaned.replace(/\./g, '').replace(',', '.')
+    } else {
+      // "1,234.56" → virgule = séparateur milliers, point = décimal
+      normalized = cleaned.replace(/,/g, '')
+    }
+  } else if (cleaned.includes(',')) {
+    normalized = cleaned.replace(',', '.')
+  } else if (/^\d+\.\d{3}$/.test(cleaned)) {
+    // "1.234" → point = séparateur milliers (format français)
+    normalized = cleaned.replace('.', '')
+  } else {
+    normalized = cleaned
+  }
+
+  const num = parseFloat(normalized)
   return isNaN(num) ? null : num
 }
 
@@ -57,7 +78,7 @@ export default function StatsHeader({ currentKm, finalPeakKm, totalDonations, on
 
         <div className="stats-block stats-block--center">
           <span className="stats-km__label">Versés à la recherche</span>
-          <span className="stats-km__value">{totalDonations ?? '—'} / {finalPeakKm.toLocaleString('fr-FR')} €</span>
+          <span className="stats-km__value">{donationAmount != null ? Math.round(donationAmount).toLocaleString('fr-FR') : '—'} / {finalPeakKm.toLocaleString('fr-FR')} €</span>
           <div className="stats-km__bar">
             <div className="stats-km__bar-fill" style={{ width: `${donationProgress * 100}%` }} />
           </div>

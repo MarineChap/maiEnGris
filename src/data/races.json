@@ -4557,7 +4557,8 @@
       "/photos/ardechois_2017_1.jpeg",
       "/photos/ardechois_2017_2.jpeg",
       "/photos/ardechois_2017_3.jpeg",
-      "/photos/ardechois_2017_4.jpeg"
+      "/photos/ardechois_2017_4.jpeg",
+      "/photos/ardechois_2017.jpeg"
     ],
     "gpxFile": "2017-04-30_06.04.48-trail_running.gpx",
     "gpxPath": "/gpx/2017-04-30-trail_running.gpx",
@@ -7033,9 +7034,9 @@
     "url": "https://www.traildescoursieres.fr/",
     "anecdote": null,
     "photos": [
-      "/photos/coursiere.jpg"
+      "/photos/coursiere_2015_1.jpeg",
+      "/photos/coursiere_2015_2.jpeg"
     ],
-    "photoCredit": "youtube.com/watch?v=JPJCWT0TIjI",
     "gpxFile": "2015-05-09_04.01.36-running.gpx",
     "gpxPath": "/gpx/2015-05-09-running.gpx",
     "tracePartial": false,
@@ -8748,7 +8749,7 @@
     "url": "https://www.traildescoursieres.fr/",
     "anecdote": null,
     "photos": [
-      "https://www.trail-endurance.com/e-docs-btoc/00/00/52/61/retour-images-sur-trail-hivernal-des-coursieres-2026_1000x564.jpg"
+      "/photos/coursiere_hiver_2014.jpeg"
     ],
     "gpxFile": null,
     "gpxPath": null,
@@ -8759,9 +8760,7 @@
     "elevGain_m": null,
     "avgHeartRate": null,
     "startTime": null,
-    "elevationSamples": null,
-    "photoCredit": "trail-endurance.com",
-    "photoCreditUrl": "https://www.trail-endurance.com/e-docs-btoc/00/00/52/61/retour-images-sur-trail-hivernal-des-coursieres-2026_1000x564.jpg"
+    "elevationSamples": null
   },
   "2013-09-15": {
     "date": "2013-09-15",

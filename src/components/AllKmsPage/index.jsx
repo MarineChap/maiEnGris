@@ -53,7 +53,7 @@ export default function AllKmsPage({ races, onClose }) {
   }, [onClose])
 
   const timeline = buildTimeline(contributions, races).reverse()
-  const totalKm = contributions.reduce((s, c) => s + c.km, 0)
+  const totalKm = contributions.reduce((s, c) => s + Number(c.km), 0)
 
   return (
     <motion.div

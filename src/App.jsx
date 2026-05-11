@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import SiteHeader from './components/layout/SiteHeader'
 import HeroSection from './components/layout/HeroSection'
@@ -20,11 +20,7 @@ export default function App() {
   const [dbKm, setDbKm] = useState(0)
   const [contributions, setContributions] = useState([])
   const [contributionsCount, setContributionsCount] = useState(0)
-  const fetchingRef = useRef(false)
-
   const fetchAll = useCallback(async () => {
-    if (fetchingRef.current) return
-    fetchingRef.current = true
     try {
       const { totalKm, count } = await getStats()
       setDbKm(totalKm)
@@ -33,8 +29,6 @@ export default function App() {
       setContributions(recent)
     } catch (err) {
       console.error('[mai-en-gris] Erreur chargement:', err)
-    } finally {
-      fetchingRef.current = false
     }
   }, [])
 
