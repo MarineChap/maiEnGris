@@ -8725,7 +8725,7 @@
     "officialDistanceKm": 102,
     "officialElevGain_m": 4000,
     "url": "https://www.traildescoursieres.fr/",
-    "anecdote": null,
+    "anecdote": "Première course avec Ninon.",
     "photos": [
       "/photos/coursiere.jpg"
     ],
@@ -9960,7 +9960,7 @@
     "officialDistanceKm": 30,
     "officialElevGain_m": 1160,
     "url": "https://www.traildescoursieres.fr/",
-    "anecdote": "Première course avec Ninon.",
+    "anecdote": "",
     "photos": [
       "/photos/trail_coursiere_hiver.jpg"
     ],
@@ -10009,7 +10009,6 @@
     "photos": [
       "/photos/gerbier_2015.jpg"
     ],
-    "photoCredit": "ardeche-actu.com",
     "gpxFile": "2016-04-02_06.32.52-trail_running.gpx",
     "gpxPath": "/gpx/2016-04-03-trail_running.gpx",
     "tracePartial": false,
