@@ -213,7 +213,36 @@ export default function MountainSVG({
           animate={{ x: runnerPos.x, y: runnerPos.y }}
           transition={{ type: 'spring', damping: 25, stiffness: 200 }}
         >
-          <circle r={10} fill="var(--color-white)" filter="url(#markerGlow)" />
+          <motion.circle r={16} fill="transparent" stroke="var(--color-sky)" strokeWidth={2}
+            opacity={0.5}
+            animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} />
+          <circle r={12} fill="var(--color-white)" filter="url(#markerGlow)" />
+          <motion.circle r={10} fill="var(--color-sky)" stroke="var(--color-white)" strokeWidth={2}
+            animate={{ scale: [1, 1.15, 1] }}
+            transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
+          {nextRace && (() => {
+            const remaining = (nextRace.cumulativeKm - currentKm).toLocaleString('fr-FR')
+            const anchor = runnerPos.x < 120 ? 'start' : runnerPos.x > 880 ? 'end' : 'middle'
+            const above = runnerPos.y > 100
+            return (
+              <g>
+                <line x1={0} y1={above ? -12 : 12} x2={0} y2={above ? -28 : 28}
+                  stroke="var(--color-navy)" strokeWidth={1} opacity={0.6} />
+                <text y={above ? -48 : 38} textAnchor={anchor}
+                  fill="var(--color-navy)" fontSize={10} fontWeight="700"
+                  fontFamily={FONT}>
+                  {nextRace.name}
+                </text>
+                <text y={above ? -34 : 52} textAnchor={anchor}
+                  fill="var(--color-navy)" fontSize={9} fontWeight="800"
+                  fontFamily={FONT}
+                  style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Plus que {remaining} km !
+                </text>
+              </g>
+            )
+          })()}
         </motion.g>
 
         {/* Summit altitude haze overlay */}

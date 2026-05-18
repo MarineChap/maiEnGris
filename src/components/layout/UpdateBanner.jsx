@@ -31,7 +31,7 @@ export default function UpdateBanner() {
         >
           <span className="update-banner__icon">🗺️</span>
           <p className="update-banner__text">
-            <strong>Nouveauté —</strong> Les sorties d'entraînement de Dom sont maintenant visibles dans chaque étape&nbsp;!
+            <strong>Nouveauté —</strong> Les sorties d'entraînement de Dom sont maintenant visibles dans chaque étape, depuis 2015&nbsp;!
           </p>
           <button
             className="update-banner__close"

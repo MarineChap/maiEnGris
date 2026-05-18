@@ -201,41 +201,8 @@ export default function MilestoneMarker({
         </>
       )}
 
-      {state === 'active' && (
-        <>
-          {showDot && (
-            <>
-              <motion.circle r={16} fill="transparent" stroke="var(--color-sky)" strokeWidth={2}
-                opacity={0.5} animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }} />
-              <circle r={12} fill="white" filter="url(#markerGlow)" />
-              <motion.circle r={10} fill="var(--color-sky)" stroke="white" strokeWidth={2}
-                animate={{ scale: [1, 1.15, 1] }}
-                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }} />
-            </>
-          )}
-          {/* Active label — always visible */}
-          {showLabel && (
-            <g>
-              <line x1={0} y1={connectorEnd} x2={0} y2={connectorLabelEdge}
-                stroke="var(--color-navy)" strokeWidth={1} opacity={0.6} />
-              <g transform={`translate(0, ${labelOffset})`}>
-                <text y={isTop ? -14 : 22} textAnchor={textAnchor}
-                  fill="var(--color-navy)" fontSize={9} fontWeight="800"
-                  fontFamily="var(--font-primary)"
-                  style={{ textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  Plus que {(race.cumulativeKm - currentKm).toLocaleString('fr-FR')} km !
-                </text>
-                <text y={isTop ? 0 : 10} textAnchor={textAnchor}
-                  fill="var(--color-navy)" fontSize={10} fontWeight="700"
-                  fontFamily="var(--font-primary)">
-                  <tspan x="0">{line1}</tspan>
-                  {line2 && <tspan x="0" dy="12">{line2}</tspan>}
-                </text>
-              </g>
-            </g>
-          )}
-        </>
+      {state === 'active' && showDot && (
+        <circle r={8} fill="var(--color-locked)" stroke="white" strokeWidth={1.5} />
       )}
 
       {state === 'completed' && (
