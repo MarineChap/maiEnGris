@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import '../../styles/UpdateBanner.css'
 
-const CURRENT_VERSION = 'v2'
+const CURRENT_VERSION = 'v3'
 
 export default function UpdateBanner() {
   const [visible, setVisible] = useState(false)
@@ -29,9 +29,9 @@ export default function UpdateBanner() {
           exit={{ opacity: 0, y: -32 }}
           transition={{ type: 'spring', damping: 22, stiffness: 280 }}
         >
-          <span className="update-banner__icon">✨</span>
+          <span className="update-banner__icon">🗺️</span>
           <p className="update-banner__text">
-            <strong>Nouveauté —</strong> Vous pouvez maintenant ajouter une photo et le dénivelé à vos balades&nbsp;!
+            <strong>Nouveauté —</strong> Les sorties d'entraînement de Dom sont maintenant visibles dans chaque étape&nbsp;!
           </p>
           <button
             className="update-banner__close"
