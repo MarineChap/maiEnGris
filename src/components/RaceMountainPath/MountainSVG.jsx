@@ -1,6 +1,7 @@
 import { useRef, useState, useLayoutEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import MilestoneMarker from './MilestoneMarker'
+import BirthdayStars from './BirthdayStars'
 
 // The mountain path — ascends from bottom-left to the summit (top-right)
 const MOUNTAIN_PATH_D =
@@ -175,10 +176,22 @@ export default function MountainSVG({
           <pattern id="mountainPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
             <path d="M0 100 L50 0 L100 100 Z" fill="rgba(29, 43, 82, 0.03)" />
           </pattern>
+
+          {/* Soft glow for birthday stars */}
+          <filter id="starGlow" x="-300%" y="-300%" width="700%" height="700%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3.5" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
         </defs>
 
         {/* Sky — extended to cover frieze zone */}
         <rect x="-5" y="-20" width="1035" height="535" fill="url(#skyGrad)" />
+
+        {/* Birthday stars — rendered just above sky, below mountain and labels */}
+        <BirthdayStars runnerX={runnerPos.x} />
 
         {/* Mountain silhouette fill */}
         <path d={MOUNTAIN_FILL_D} fill="rgba(29, 43, 82, 0.07)" />
