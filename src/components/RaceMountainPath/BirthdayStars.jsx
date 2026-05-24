@@ -51,7 +51,7 @@ function getDisplayCount(count, starCount) {
 
 export default function BirthdayStars({ runnerX = 500 }) {
   const today = new Date()
-  const isBirthday = today.getMonth() === 4 && today.getDate() >= 22 // TODO: revenir à === 23 après test
+  const isBirthday = today.getMonth() === 4 && today.getDate() === 23
   const year = today.getFullYear()
   const starCount = year - 1965
 
